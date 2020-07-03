@@ -1,0 +1,106 @@
+/*
+ Basic MQTT example
+
+ This sketch demonstrates the basic capabilities of the library.
+ It connects to an MQTT server then:
+  - publishes "hello world" to the topic "outTopic"
+  - subscribes to the topic "inTopic", printing out any messages
+    it receives. NB - it assumes the received payloads are strings not binary
+
+ It will reconnect to the server if the connection is lost using a blocking
+ reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
+ achieve the same result without blocking the main loop.
+ 
+*/
+#include <SPI.h>
+#include <Ethernet.h>
+#include <PubSubClient.h>
+#include <Crypto.h>
+#include <AES.h>
+#include <string.h>
+#include <CTR.h>
+
+
+CTR<AES128> ctraes128;
+
+byte payload_encrypted[16];
+byte payload_decrypted[16];
+
+byte iv[16] = {
+    0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01
+};
+const char key[16] = "5TGB&YHN7UJM(IK<";
+const char text[16] = "Single block msg";
+
+bool prepareCipher(Cipher *cipher, byte key[], byte iv[]){
+  cipher->clear();
+  if (!cipher->setKey(key, cipher->keySize()))
+  {
+    return false;
+  }
+  if (!cipher->setIV(iv, cipher->ivSize()))
+  {
+    return false;
+  }
+  return true;
+}
+
+void encryptData(Cipher *cipher, const uint8_t data[], uint8_t encryptedData[], size_t tam){
+  size_t posn, len, inc;
+  inc = 1; // idk what it does but it was used in the example
+  for (posn = 0; posn < tam; posn += inc)
+  {
+    len = tam - posn;
+    if (len > inc)
+      len = inc;
+    cipher->encrypt(encryptedData + posn, data + posn, len);
+  }
+  cipher->clear();
+
+  Serial.print("Payload Encrypted: ");
+    for(int i = 0; i < sizeof(text); i++){
+        Serial.print(payload_encrypted[i]);
+        Serial.print(":");
+    }
+    Serial.println();
+}
+
+void decryptData(Cipher *cipher, const uint8_t encryptedData[], uint8_t data[], size_t tam){
+  size_t posn, len, inc;
+  inc = 1; // idk what it does but it was used in the example
+  for (posn = 0; posn < tam; posn += inc)
+  {
+    len = tam - posn;
+    if (len > inc)
+      len = inc;
+    cipher->decrypt(data + posn, encryptedData + posn, len);
+  }
+  cipher->clear();
+
+  Serial.print("Payload Decrypted: ");
+    for(unsigned int i = 0; i < sizeof(text); i++){
+        Serial.print(payload_decrypted[i]);
+        Serial.print(":");
+    }
+    Serial.println();
+}
+
+void setup()
+{
+    Serial.begin(9600);
+    Serial.print("Original text msg: ");
+    for(unsigned int i = 0; i < sizeof(text); i++){
+        Serial.print(text[i], HEX);
+        Serial.print(":");
+    }
+    Serial.println();
+
+    prepareCipher(&ctraes128, (byte*) key, iv);
+    encryptData(&ctraes128, (byte*)text, payload_encrypted, sizeof(text));
+    decryptData(&ctraes128, payload_encrypted, payload_decrypted, sizeof(text));
+}
+
+void loop()
+{
+}

@@ -3,9 +3,9 @@
 
 // Update these with values suitable for your network.
 
-const char* ssid = "........";
-const char* password = "........";
-const char* mqtt_server = "191.234.164.230";
+const char* ssid = "Franciscone";
+const char* password = "franciscone2020";
+const char* mqtt_server = "mqtt.eclipse.org";
 
 WiFiClient espClient;
 PubSubClient client(espClient);

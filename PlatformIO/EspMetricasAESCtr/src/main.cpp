@@ -67,7 +67,7 @@ static TestVector const testVectorAES192 = {
     .iv          = {0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59,
                     0xDA, 0x48, 0xD9, 0x0B, 0x00, 0x00, 0x00, 0x01,
                     0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59},
-    .size        = 32
+    .size        = 16
 };
 static TestVector const testVectorAES256 = {
     .name        = "AES-256-CTR",
@@ -83,7 +83,7 @@ static TestVector const testVectorAES256 = {
                     0x4A, 0x17, 0x86, 0xF0, 0x00, 0x00, 0x00, 0x01,
                     0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59,
                     0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59},
-    .size        = 36
+    .size        = 16
 };
 
 CTR<AES128> ctraes128;
@@ -155,14 +155,14 @@ void setup()
 
     Serial.println();
 
-    Serial.println("Performance Tests:");
-    perfCipherEncrypt("AES-128-CTR Encrypt", &ctraes128, &testVectorAES128);
-    perfCipherDecrypt("AES-128-CTR Decrypt", &ctraes128, &testVectorAES128);
-    Serial.println();
+    // Serial.println("Performance Tests:");
+    // perfCipherEncrypt("AES-128-CTR Encrypt", &ctraes128, &testVectorAES128);
+    // perfCipherDecrypt("AES-128-CTR Decrypt", &ctraes128, &testVectorAES128);
+    // Serial.println();
 
-    perfCipherEncrypt("AES-128-CTR Encrypt", &ctraes192, &testVectorAES192);
-    perfCipherDecrypt("AES-128-CTR Decrypt", &ctraes192, &testVectorAES192);
-    Serial.println();
+    // perfCipherEncrypt("AES-128-CTR Encrypt", &ctraes192, &testVectorAES192);
+    // perfCipherDecrypt("AES-128-CTR Decrypt", &ctraes192, &testVectorAES192);
+    // Serial.println();
 
     perfCipherEncrypt("AES-128-CTR Encrypt", &ctraes256, &testVectorAES256);
     perfCipherDecrypt("AES-128-CTR Decrypt", &ctraes256, &testVectorAES256);
@@ -171,4 +171,5 @@ void setup()
 
 void loop()
 {
+    yield();
 }

@@ -43,7 +43,7 @@ struct TestVector
 };
 
 // Define the ECB test vectors from the FIPS specification.
-static TestVector const testVectorAES128 = {
+TestVector const testVectorAES128 = {
     .name        = "AES-128-CBC",
     .key         = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
                     0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F},
@@ -55,7 +55,7 @@ static TestVector const testVectorAES128 = {
                     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01},
     .size        = 16
 };
-static TestVector const testVectorAES192 = {
+TestVector const testVectorAES192 = {
     .name        = "AES-192-CBC",
     .key         = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
                     0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
@@ -67,9 +67,9 @@ static TestVector const testVectorAES192 = {
     .iv          = {0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59,
                     0xDA, 0x48, 0xD9, 0x0B, 0x00, 0x00, 0x00, 0x01,
                     0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59},
-    .size        = 32
+    .size        = 16
 };
-static TestVector const testVectorAES256 = {
+TestVector const testVectorAES256 = {
     .name        = "AES-256-CBC",
     .key         = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
                     0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
@@ -83,7 +83,7 @@ static TestVector const testVectorAES256 = {
                     0x4A, 0x17, 0x86, 0xF0, 0x00, 0x00, 0x00, 0x01,
                     0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59,
                     0x00, 0x6C, 0xB6, 0xDB, 0xC0, 0x54, 0x3B, 0x59},
-    .size        = 36
+    .size        = 16
 };
 
 CBC<AES128> CBCaes128;
@@ -155,17 +155,17 @@ void setup()
 
     Serial.println();
 
-    Serial.println("Performance Tests:");
-    perfCipherEncrypt("AES-128-CBC Encrypt", &CBCaes128, &testVectorAES128);
-    perfCipherDecrypt("AES-128-CBC Decrypt", &CBCaes128, &testVectorAES128);
-    Serial.println();
+    // Serial.println("Performance Tests:");
+    // perfCipherEncrypt("AES-128-CBC Encrypt", &CBCaes128, &testVectorAES128);
+    // perfCipherDecrypt("AES-128-CBC Decrypt", &CBCaes128, &testVectorAES128);
+    // Serial.println();
 
-    perfCipherEncrypt("AES-128-CBC Encrypt", &CBCaes192, &testVectorAES192);
-    perfCipherDecrypt("AES-128-CBC Decrypt", &CBCaes192, &testVectorAES192);
-    Serial.println();
+    // perfCipherEncrypt("AES-192-CBC Encrypt", &CBCaes192, &testVectorAES192);
+    // perfCipherDecrypt("AES-192-CBC Decrypt", &CBCaes192, &testVectorAES192);
+    // Serial.println();
 
-    perfCipherEncrypt("AES-128-CBC Encrypt", &CBCaes256, &testVectorAES256);
-    perfCipherDecrypt("AES-128-CBC Decrypt", &CBCaes256, &testVectorAES256);
+    perfCipherEncrypt("AES-256-CBC Encrypt", &CBCaes256, &testVectorAES256);
+    perfCipherDecrypt("AES-256-CBC Decrypt", &CBCaes256, &testVectorAES256);
     Serial.println();
 }
 

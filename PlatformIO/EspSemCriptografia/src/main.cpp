@@ -59,7 +59,7 @@ void reconnect() {
     if (client.connect(clientId.c_str(), "kali_broker", "CompuT3RSc1enc3")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("outTopic", "hello world");
+      client.publish("/franciscone/tcc/rasp", "Oi do ESP8266");
       // ... and resubscribe
       client.subscribe("inTopic");
     } else {

@@ -100,8 +100,6 @@ void reconnect()
         if (client.connect("franciscone-esp8266"))
         {
             Serial.println("connected");
-            encrypt(&aes128, (byte*) "Sending test uno", 16);
-            client.publish("/franciscone/tcc/teste", (char*) buffer);
             client.subscribe("/franciscone/tcc/esp");
         }
         else
@@ -120,6 +118,13 @@ void setupServer(){
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+  client.loop();
+}
+
+void send_msg(){
+    Serial.println("Sending mensagem ....");
+    encrypt(&aes128, (byte*) "ESP-8266-AES/CBC", 16);
+    client.publish("/franciscone/tcc/rasp", (char*) buffer, true);
 }
 
 void setup()
@@ -135,9 +140,8 @@ void loop()
     {
       reconnect();
     }
-    Serial.println("Sending mensagem ....");
-    encrypt(&aes128, (byte*) "Sending test esp", 16);
-    client.publish("/franciscone/tcc/teste", (char*) buffer);
-    delay(1500);
     client.loop();
+    delay(1500);
+    send_msg();
 }
+    

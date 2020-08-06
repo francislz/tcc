@@ -138,7 +138,7 @@ void reconnect()
     {
         Serial.print("Attempting MQTT connection...");
         // Attempt to connect
-        if (client.connect("arduinoClient", "kali_broker", "CompuT3RSc1enc3"))
+        if (client.connect("esp-client"))
         {
             Serial.println("connected");
             // Once connected, publish an announcement...
@@ -173,13 +173,7 @@ void setup()
     setupServer();
     aes128.setKey((byte*) key, strlen(key));
     
-    const char* text = "{ luminosity: \"1000.0\"}";
-
-    byte* encrypted_payload = encrypt_blocks(&aes128, (byte*) text, strlen(text));
-    byte* decrypted_payload = decrypt_blocks(&aes128, encrypted_payload, strlen(text));
     
-    free(encrypted_payload);
-    free(decrypted_payload);
     // Allow the hardware to sort itself out
     delay(1500);
 }
@@ -191,4 +185,13 @@ void loop()
         reconnect();
     }
     client.loop();
+    const char* text = "ESP-8266-AES/CBC:AAAAAAAAAAAAAA:ESP-8266-AES/CBC";
+
+    byte* encrypted_payload = encrypt_blocks(&aes128, (byte*) text, strlen(text));
+    Serial.print("Mensagem: ");
+    Serial.println((char*) encrypted_payload);
+    client.publish("/franciscone/tcc/esp", (char*)encrypted_payload);
+    
+    free(encrypted_payload);
+    delay(5000);
 }

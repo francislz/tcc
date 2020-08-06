@@ -1,0 +1,26 @@
+- Planilha de resultados
+    - Metricas do AES
+    - Exemplos do proprio autor
+- Pasta de screenshots
+
+- Problema com a metrica de tempo em rede ! (RTC ?)
+- Sem multimetro. Estou tentando achar alguma coisa para calcular dissipação por instrução.
+
+- Escrita:
+    * Analise de tradesoff
+    * Falar das metricas de forma geral comparando as performances
+    * Falar sobre as imagens e como cada modo de operação garante a confidencialidade
+    e os problemas com cada metodo e por que o mais usado é o CTR.
+    * Problemas que ainda resta mesmo com essa implementação
+    * Onde essa implementação é ideal
+    * Mostrar um exemplo da captura do pacote de conexão
+    * Como vamos fazer com o RSA, pensei na assinatura ?
+        - RSA + AES, para garantir tudo ?
+    * Os limites do TLS na IoT
+
+- Medicao:
+    * Codigo com loop para medição.
+    * Fazer mais execuções. (Média e Desvio Padrão)
+
+- TO-DO:
+    * Questao do pipeline

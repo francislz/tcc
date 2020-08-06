@@ -123,7 +123,7 @@ void setupServer(){
 
 void send_msg(){
     Serial.println("Sending mensagem ....");
-    encrypt(&aes128, (byte*) "ESP-8266-AES/CTR", 16);
+    encrypt(&aes128, (byte*) "ESP-8266-AES/CBC:AAAAAAAAAAAAAA:ESP-8266-AES/CBC", 48);
     client.publish("/franciscone/tcc/rasp", (char*) buffer, true);
 }
 

@@ -122,4 +122,4 @@ for i in range(0, 10):
     performanceTest("AES-256-CTR", payload, AES.MODE_CTR, 32, key_256, i)
 
 df = DataFrame(data=data)
-print(df)
+df.to_excel("data.xlsx")

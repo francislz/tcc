@@ -1,0 +1,63 @@
+{
+    "configurations": [
+        {
+            "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/whistleblower/Desktop/tcc/PlatformIO/ArduinoMetricaLoop/include",
+                "/home/whistleblower/Desktop/tcc/PlatformIO/ArduinoMetricaLoop/src",
+                "/home/whistleblower/.platformio/lib/Crypto",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/variants/standard",
+                "/home/whistleblower/.platformio/lib/Ethernet/src",
+                "/home/whistleblower/.platformio/lib/PubSubClient/src",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/whistleblower/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/whistleblower/Desktop/tcc/PlatformIO/ArduinoMetricaLoop/include",
+                    "/home/whistleblower/Desktop/tcc/PlatformIO/ArduinoMetricaLoop/src",
+                    "/home/whistleblower/.platformio/lib/Crypto",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "/home/whistleblower/.platformio/lib/Ethernet/src",
+                    "/home/whistleblower/.platformio/lib/PubSubClient/src",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/whistleblower/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=40304",
+                "ARDUINO_AVR_UNO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/home/whistleblower/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}

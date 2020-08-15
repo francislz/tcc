@@ -1,0 +1,429 @@
+# 1 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp"
+# 23 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/OFB.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/OFB.h"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Cipher.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/Cipher.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 1 3
+# 37 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 1 3 4
+# 9 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 3 4
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 1 3 4
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef signed int int8_t __attribute__((__mode__(__QI__)));
+typedef unsigned int uint8_t __attribute__((__mode__(__QI__)));
+typedef signed int int16_t __attribute__ ((__mode__ (__HI__)));
+typedef unsigned int uint16_t __attribute__ ((__mode__ (__HI__)));
+typedef signed int int32_t __attribute__ ((__mode__ (__SI__)));
+typedef unsigned int uint32_t __attribute__ ((__mode__ (__SI__)));
+
+typedef signed int int64_t __attribute__((__mode__(__DI__)));
+typedef unsigned int uint64_t __attribute__((__mode__(__DI__)));
+# 146 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 163 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_least8_t;
+
+
+
+
+typedef uint8_t uint_least8_t;
+
+
+
+
+typedef int16_t int_least16_t;
+
+
+
+
+typedef uint16_t uint_least16_t;
+
+
+
+
+typedef int32_t int_least32_t;
+
+
+
+
+typedef uint32_t uint_least32_t;
+
+
+
+
+
+
+
+typedef int64_t int_least64_t;
+
+
+
+
+
+
+typedef uint64_t uint_least64_t;
+# 217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_fast8_t;
+
+
+
+
+typedef uint8_t uint_fast8_t;
+
+
+
+
+typedef int16_t int_fast16_t;
+
+
+
+
+typedef uint16_t uint_fast16_t;
+
+
+
+
+typedef int32_t int_fast32_t;
+
+
+
+
+typedef uint32_t uint_fast32_t;
+
+
+
+
+
+
+
+typedef int64_t int_fast64_t;
+
+
+
+
+
+
+typedef uint64_t uint_fast64_t;
+# 277 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int64_t intmax_t;
+
+
+
+
+typedef uint64_t uintmax_t;
+# 10 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 2 3 4
+# 38 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 2 3
+# 77 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+typedef int32_t int_farptr_t;
+
+
+
+typedef uint32_t uint_farptr_t;
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Cipher.h" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 149 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef int ptrdiff_t;
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef unsigned int size_t;
+# 426 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 28 "/home/whistleblower/.platformio/lib/Crypto/Cipher.h" 2
+
+
+# 29 "/home/whistleblower/.platformio/lib/Crypto/Cipher.h"
+class Cipher
+{
+public:
+    Cipher();
+    virtual ~Cipher();
+
+    virtual size_t keySize() const = 0;
+    virtual size_t ivSize() const = 0;
+
+    virtual bool setKey(const uint8_t *key, size_t len) = 0;
+    virtual bool setIV(const uint8_t *iv, size_t len) = 0;
+
+    virtual void encrypt(uint8_t *output, const uint8_t *input, size_t len) = 0;
+    virtual void decrypt(uint8_t *output, const uint8_t *input, size_t len) = 0;
+
+    virtual void clear() = 0;
+};
+# 27 "/home/whistleblower/.platformio/lib/Crypto/OFB.h" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/BlockCipher.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/BlockCipher.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 28 "/home/whistleblower/.platformio/lib/Crypto/BlockCipher.h" 2
+
+class BlockCipher
+{
+public:
+    BlockCipher();
+    virtual ~BlockCipher();
+
+    virtual size_t blockSize() const = 0;
+    virtual size_t keySize() const = 0;
+
+    virtual bool setKey(const uint8_t *key, size_t len) = 0;
+
+    virtual void encryptBlock(uint8_t *output, const uint8_t *input) = 0;
+    virtual void decryptBlock(uint8_t *output, const uint8_t *input) = 0;
+
+    virtual void clear() = 0;
+};
+# 28 "/home/whistleblower/.platformio/lib/Crypto/OFB.h" 2
+
+class OFBCommon : public Cipher
+{
+public:
+    virtual ~OFBCommon();
+
+    size_t keySize() const;
+    size_t ivSize() const;
+
+    bool setKey(const uint8_t *key, size_t len);
+    bool setIV(const uint8_t *iv, size_t len);
+
+    void encrypt(uint8_t *output, const uint8_t *input, size_t len);
+    void decrypt(uint8_t *output, const uint8_t *input, size_t len);
+
+    void clear();
+
+protected:
+    OFBCommon();
+    void setBlockCipher(BlockCipher *cipher) { blockCipher = cipher; }
+
+private:
+    BlockCipher *blockCipher;
+    uint8_t iv[16];
+    uint8_t posn;
+};
+
+template <typename T>
+class OFB : public OFBCommon
+{
+public:
+    OFB() { setBlockCipher(&cipher); }
+
+private:
+    T cipher;
+};
+# 24 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 28 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h" 2
+
+void clean(void *dest, size_t size);
+
+template <typename T>
+inline void clean(T &var)
+{
+    clean(&var, sizeof(T));
+}
+
+bool secure_compare(const void *data1, const void *data2, size_t len);
+# 25 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 1 3
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 47 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 2 3
+# 58 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+
+# 58 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern "C" {
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int ffs(int __val) __attribute__((__const__));
+
+
+
+
+
+extern int ffsl(long __val) __attribute__((__const__));
+
+
+
+
+
+__extension__ extern int ffsll(long long __val) __attribute__((__const__));
+# 150 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memccpy(void *, const void *, int, size_t);
+# 162 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memchr(const void *, int, size_t) __attribute__((__pure__));
+# 180 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int memcmp(const void *, const void *, size_t) __attribute__((__pure__));
+# 191 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memcpy(void *, const void *, size_t);
+# 203 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmem(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 213 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmove(void *, const void *, size_t);
+# 225 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memrchr(const void *, int, size_t) __attribute__((__pure__));
+# 235 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memset(void *, int, size_t);
+# 248 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcat(char *, const char *);
+# 262 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchr(const char *, int) __attribute__((__pure__));
+# 274 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchrnul(const char *, int) __attribute__((__pure__));
+# 287 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcmp(const char *, const char *) __attribute__((__pure__));
+# 305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcpy(char *, const char *);
+# 320 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcasecmp(const char *, const char *) __attribute__((__pure__));
+# 333 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcasestr(const char *, const char *) __attribute__((__pure__));
+# 344 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strcspn(const char *__s, const char *__reject) __attribute__((__pure__));
+# 364 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strdup(const char *s1);
+# 377 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcat(char *, const char *, size_t);
+# 388 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcpy(char *, const char *, size_t);
+# 399 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlen(const char *) __attribute__((__pure__));
+# 411 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strlwr(char *);
+# 422 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncat(char *, const char *, size_t);
+# 434 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 449 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncpy(char *, const char *, size_t);
+# 464 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncasecmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 478 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strnlen(const char *, size_t) __attribute__((__pure__));
+# 491 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strpbrk(const char *__s, const char *__accept) __attribute__((__pure__));
+# 505 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrchr(const char *, int) __attribute__((__pure__));
+# 515 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrev(char *);
+# 533 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strsep(char **, const char *);
+# 544 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strspn(const char *__s, const char *__accept) __attribute__((__pure__));
+# 557 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strstr(const char *, const char *) __attribute__((__pure__));
+# 576 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok(char *, const char *);
+# 593 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok_r(char *, const char *, char **);
+# 606 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strupr(char *);
+
+
+
+extern int strcoll(const char *s1, const char *s2);
+extern char *strerror(int errnum);
+extern size_t strxfrm(char *dest, const char *src, size_t n);
+
+
+
+}
+# 26 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp" 2
+# 42 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp"
+
+# 42 "/home/whistleblower/.platformio/lib/Crypto/OFB.cpp"
+OFBCommon::OFBCommon()
+    : blockCipher(0)
+    , posn(16)
+{
+}
+
+
+
+
+OFBCommon::~OFBCommon()
+{
+    clean(iv);
+}
+
+size_t OFBCommon::keySize() const
+{
+    return blockCipher->keySize();
+}
+
+size_t OFBCommon::ivSize() const
+{
+    return 16;
+}
+
+bool OFBCommon::setKey(const uint8_t *key, size_t len)
+{
+
+    if (blockCipher->blockSize() != 16)
+        return false;
+
+
+    return blockCipher->setKey(key, len);
+}
+
+bool OFBCommon::setIV(const uint8_t *iv, size_t len)
+{
+    if (len != 16)
+        return false;
+    memcpy(this->iv, iv, 16);
+    posn = 16;
+    return true;
+}
+
+void OFBCommon::encrypt(uint8_t *output, const uint8_t *input, size_t len)
+{
+    uint8_t size;
+    while (len > 0) {
+
+
+        if (posn >= 16) {
+            blockCipher->encryptBlock(iv, iv);
+            posn = 0;
+        }
+
+
+        size = 16 - posn;
+        if (size > len)
+            size = len;
+        len -= size;
+        while (size > 0) {
+            *output++ = *input++ ^ iv[posn++];
+            --size;
+        }
+    }
+}
+
+void OFBCommon::decrypt(uint8_t *output, const uint8_t *input, size_t len)
+{
+    encrypt(output, input, len);
+}
+
+void OFBCommon::clear()
+{
+    blockCipher->clear();
+    clean(iv);
+    posn = 16;
+}

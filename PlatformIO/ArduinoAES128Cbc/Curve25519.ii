@@ -1,0 +1,1262 @@
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+# 23 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.h"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 1 3
+# 37 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 1 3 4
+# 9 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 3 4
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 1 3 4
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef signed int int8_t __attribute__((__mode__(__QI__)));
+typedef unsigned int uint8_t __attribute__((__mode__(__QI__)));
+typedef signed int int16_t __attribute__ ((__mode__ (__HI__)));
+typedef unsigned int uint16_t __attribute__ ((__mode__ (__HI__)));
+typedef signed int int32_t __attribute__ ((__mode__ (__SI__)));
+typedef unsigned int uint32_t __attribute__ ((__mode__ (__SI__)));
+
+typedef signed int int64_t __attribute__((__mode__(__DI__)));
+typedef unsigned int uint64_t __attribute__((__mode__(__DI__)));
+# 146 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 163 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_least8_t;
+
+
+
+
+typedef uint8_t uint_least8_t;
+
+
+
+
+typedef int16_t int_least16_t;
+
+
+
+
+typedef uint16_t uint_least16_t;
+
+
+
+
+typedef int32_t int_least32_t;
+
+
+
+
+typedef uint32_t uint_least32_t;
+
+
+
+
+
+
+
+typedef int64_t int_least64_t;
+
+
+
+
+
+
+typedef uint64_t uint_least64_t;
+# 217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_fast8_t;
+
+
+
+
+typedef uint8_t uint_fast8_t;
+
+
+
+
+typedef int16_t int_fast16_t;
+
+
+
+
+typedef uint16_t uint_fast16_t;
+
+
+
+
+typedef int32_t int_fast32_t;
+
+
+
+
+typedef uint32_t uint_fast32_t;
+
+
+
+
+
+
+
+typedef int64_t int_fast64_t;
+
+
+
+
+
+
+typedef uint64_t uint_fast64_t;
+# 277 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int64_t intmax_t;
+
+
+
+
+typedef uint64_t uintmax_t;
+# 10 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 2 3 4
+# 38 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 2 3
+# 77 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+typedef int32_t int_farptr_t;
+
+
+
+typedef uint32_t uint_farptr_t;
+# 27 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 149 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef int ptrdiff_t;
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef unsigned int size_t;
+# 426 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 28 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h" 2
+# 57 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h"
+
+# 57 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h"
+typedef uint16_t limb_t;
+typedef int16_t slimb_t;
+typedef uint32_t dlimb_t;
+# 72 "/home/whistleblower/.platformio/lib/Crypto/BigNumberUtil.h"
+class BigNumberUtil
+{
+public:
+    static void unpackLE(limb_t *limbs, size_t count,
+                         const uint8_t *bytes, size_t len);
+    static void unpackBE(limb_t *limbs, size_t count,
+                         const uint8_t *bytes, size_t len);
+    static void packLE(uint8_t *bytes, size_t len,
+                       const limb_t *limbs, size_t count);
+    static void packBE(uint8_t *bytes, size_t len,
+                       const limb_t *limbs, size_t count);
+
+    static limb_t add(limb_t *result, const limb_t *x,
+                      const limb_t *y, size_t size);
+    static limb_t sub(limb_t *result, const limb_t *x,
+                      const limb_t *y, size_t size);
+    static void mul(limb_t *result, const limb_t *x, size_t xcount,
+                    const limb_t *y, size_t ycount);
+    static void reduceQuick(limb_t *result, const limb_t *x,
+                            const limb_t *y, size_t size);
+
+    static limb_t add_P(limb_t *result, const limb_t *x,
+                        const limb_t *y, size_t size);
+    static limb_t sub_P(limb_t *result, const limb_t *x,
+                        const limb_t *y, size_t size);
+    static void mul_P(limb_t *result, const limb_t *x, size_t xcount,
+                      const limb_t *y, size_t ycount);
+    static void reduceQuick_P(limb_t *result, const limb_t *x,
+                              const limb_t *y, size_t size);
+
+    static limb_t isZero(const limb_t *x, size_t size);
+
+private:
+
+    BigNumberUtil() {}
+    ~BigNumberUtil() {}
+};
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.h" 2
+
+class Ed25519;
+
+class Curve25519
+{
+public:
+    static bool eval(uint8_t result[32], const uint8_t s[32], const uint8_t x[32]);
+
+    static void dh1(uint8_t k[32], uint8_t f[32]);
+    static bool dh2(uint8_t k[32], uint8_t f[32]);
+
+
+
+
+private:
+
+    static uint8_t isWeakPoint(const uint8_t k[32]);
+
+    static void reduce(limb_t *result, limb_t *x, uint8_t size);
+    static limb_t reduceQuick(limb_t *x);
+
+    static void mulNoReduce(limb_t *result, const limb_t *x, const limb_t *y);
+
+    static void mul(limb_t *result, const limb_t *x, const limb_t *y);
+    static void square(limb_t *result, const limb_t *x)
+    {
+        mul(result, x, x);
+    }
+
+    static void mulA24(limb_t *result, const limb_t *x);
+
+    static void mul_P(limb_t *result, const limb_t *x, const limb_t *y);
+
+    static void add(limb_t *result, const limb_t *x, const limb_t *y);
+    static void sub(limb_t *result, const limb_t *x, const limb_t *y);
+
+    static void cswap(limb_t select, limb_t *x, limb_t *y);
+    static void cmove(limb_t select, limb_t *x, const limb_t *y);
+
+    static void pow250(limb_t *result, const limb_t *x);
+    static void recip(limb_t *result, const limb_t *x);
+    static bool sqrt(limb_t *result, const limb_t *x);
+
+
+    Curve25519() {}
+    ~Curve25519() {}
+
+    friend class Ed25519;
+};
+# 24 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 28 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h" 2
+
+void clean(void *dest, size_t size);
+
+template <typename T>
+inline void clean(T &var)
+{
+    clean(&var, sizeof(T));
+}
+
+bool secure_compare(const void *data1, const void *data2, size_t len);
+# 25 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/RNG.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/RNG.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 28 "/home/whistleblower/.platformio/lib/Crypto/RNG.h" 2
+
+class NoiseSource;
+
+class RNGClass
+{
+public:
+    RNGClass();
+    ~RNGClass();
+
+    void begin(const char *tag);
+    void addNoiseSource(NoiseSource &source);
+
+    void setAutoSaveTime(uint16_t minutes);
+
+    void rand(uint8_t *data, size_t len);
+    bool available(size_t len) const;
+
+    void stir(const uint8_t *data, size_t len, unsigned int credit = 0);
+
+    void save();
+
+    void loop();
+
+    void destroy();
+
+    static const int SEED_SIZE = 48;
+
+private:
+    uint32_t block[16];
+    uint32_t stream[16];
+    uint16_t credits : 13;
+    uint16_t firstSave : 1;
+    uint16_t initialized : 1;
+    uint16_t trngPending : 1;
+    unsigned long timer;
+    unsigned long timeout;
+    NoiseSource *noiseSources[4];
+    uint8_t count;
+    uint8_t trngPosn;
+
+    void rekey();
+    void mixTRNG();
+};
+
+extern RNGClass RNG;
+# 26 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/utility/LimbUtil.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/utility/LimbUtil.h"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/utility/ProgMemUtil.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/utility/ProgMemUtil.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 1 3
+# 89 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 90 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 1 3
+# 99 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/sfr_defs.h" 1 3
+# 100 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 272 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/iom328p.h" 1 3
+# 273 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 627 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/portpins.h" 1 3
+# 628 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/common.h" 1 3
+# 630 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/version.h" 1 3
+# 632 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+
+
+
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 1 3
+# 239 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 3
+
+# 239 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 3
+typedef struct
+{
+    unsigned char low;
+    unsigned char high;
+    unsigned char extended;
+} __fuse_t;
+# 639 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/lock.h" 1 3
+# 642 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 91 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 116 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern "C" {
+# 1158 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const void * memchr_P(const void *, int __val, size_t __len) __attribute__((__const__));
+# 1172 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int memcmp_P(const void *, const void *, size_t) __attribute__((__pure__));
+
+
+
+
+
+
+extern void *memccpy_P(void *, const void *, int __val, size_t);
+# 1188 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern void *memcpy_P(void *, const void *, size_t);
+
+
+
+
+
+
+extern void *memmem_P(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 1207 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const void * memrchr_P(const void *, int __val, size_t __len) __attribute__((__const__));
+# 1217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcat_P(char *, const char *);
+# 1233 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strchr_P(const char *, int __val) __attribute__((__const__));
+# 1245 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strchrnul_P(const char *, int __val) __attribute__((__const__));
+# 1258 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcmp_P(const char *, const char *) __attribute__((__pure__));
+# 1268 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcpy_P(char *, const char *);
+# 1285 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcasecmp_P(const char *, const char *) __attribute__((__pure__));
+
+
+
+
+
+
+extern char *strcasestr_P(const char *, const char *) __attribute__((__pure__));
+# 1305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strcspn_P(const char *__s, const char * __reject) __attribute__((__pure__));
+# 1321 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcat_P (char *, const char *, size_t );
+# 1334 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcpy_P (char *, const char *, size_t );
+# 1346 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strnlen_P(const char *, size_t) __attribute__((__const__));
+# 1357 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncmp_P(const char *, const char *, size_t) __attribute__((__pure__));
+# 1376 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncasecmp_P(const char *, const char *, size_t) __attribute__((__pure__));
+# 1387 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncat_P(char *, const char *, size_t);
+# 1401 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncpy_P(char *, const char *, size_t);
+# 1416 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strpbrk_P(const char *__s, const char * __accept) __attribute__((__pure__));
+# 1427 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strrchr_P(const char *, int __val) __attribute__((__const__));
+# 1447 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strsep_P(char **__sp, const char * __delim);
+# 1460 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strspn_P(const char *__s, const char * __accept) __attribute__((__pure__));
+# 1474 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strstr_P(const char *, const char *) __attribute__((__pure__));
+# 1496 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strtok_P(char *__s, const char * __delim);
+# 1516 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strtok_rP(char *__s, const char * __delim, char **__last);
+# 1529 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlen_PF(uint_farptr_t src) __attribute__((__const__));
+# 1545 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strnlen_PF(uint_farptr_t src, size_t len) __attribute__((__const__));
+# 1560 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern void *memcpy_PF(void *dest, uint_farptr_t src, size_t len);
+# 1575 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcpy_PF(char *dest, uint_farptr_t src);
+# 1595 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncpy_PF(char *dest, uint_farptr_t src, size_t len);
+# 1611 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcat_PF(char *dest, uint_farptr_t src);
+# 1632 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcat_PF(char *dst, uint_farptr_t src, size_t siz);
+# 1649 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncat_PF(char *dest, uint_farptr_t src, size_t len);
+# 1665 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcmp_PF(const char *s1, uint_farptr_t s2) __attribute__((__pure__));
+# 1682 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncmp_PF(const char *s1, uint_farptr_t s2, size_t n) __attribute__((__pure__));
+# 1698 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcasecmp_PF(const char *s1, uint_farptr_t s2) __attribute__((__pure__));
+# 1716 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncasecmp_PF(const char *s1, uint_farptr_t s2, size_t n) __attribute__((__pure__));
+# 1732 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strstr_PF(const char *s1, uint_farptr_t s2);
+# 1744 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcpy_PF(char *dst, uint_farptr_t src, size_t siz);
+# 1760 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int memcmp_PF(const void *, uint_farptr_t, size_t) __attribute__((__pure__));
+# 1779 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t __strlen_P(const char *) __attribute__((__const__));
+__attribute__((__always_inline__)) static __inline__ size_t strlen_P(const char * s);
+static __inline__ size_t strlen_P(const char *s) {
+  return __builtin_constant_p(__builtin_strlen(s))
+     ? __builtin_strlen(s) : __strlen_P(s);
+}
+
+
+
+}
+# 28 "/home/whistleblower/.platformio/lib/Crypto/utility/ProgMemUtil.h" 2
+# 27 "/home/whistleblower/.platformio/lib/Crypto/utility/LimbUtil.h" 2
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 1 3
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 47 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 2 3
+# 58 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern "C" {
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int ffs(int __val) __attribute__((__const__));
+
+
+
+
+
+extern int ffsl(long __val) __attribute__((__const__));
+
+
+
+
+
+__extension__ extern int ffsll(long long __val) __attribute__((__const__));
+# 150 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memccpy(void *, const void *, int, size_t);
+# 162 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memchr(const void *, int, size_t) __attribute__((__pure__));
+# 180 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int memcmp(const void *, const void *, size_t) __attribute__((__pure__));
+# 191 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memcpy(void *, const void *, size_t);
+# 203 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmem(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 213 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmove(void *, const void *, size_t);
+# 225 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memrchr(const void *, int, size_t) __attribute__((__pure__));
+# 235 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memset(void *, int, size_t);
+# 248 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcat(char *, const char *);
+# 262 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchr(const char *, int) __attribute__((__pure__));
+# 274 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchrnul(const char *, int) __attribute__((__pure__));
+# 287 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcmp(const char *, const char *) __attribute__((__pure__));
+# 305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcpy(char *, const char *);
+# 320 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcasecmp(const char *, const char *) __attribute__((__pure__));
+# 333 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcasestr(const char *, const char *) __attribute__((__pure__));
+# 344 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strcspn(const char *__s, const char *__reject) __attribute__((__pure__));
+# 364 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strdup(const char *s1);
+# 377 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcat(char *, const char *, size_t);
+# 388 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcpy(char *, const char *, size_t);
+# 399 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlen(const char *) __attribute__((__pure__));
+# 411 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strlwr(char *);
+# 422 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncat(char *, const char *, size_t);
+# 434 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 449 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncpy(char *, const char *, size_t);
+# 464 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncasecmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 478 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strnlen(const char *, size_t) __attribute__((__pure__));
+# 491 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strpbrk(const char *__s, const char *__accept) __attribute__((__pure__));
+# 505 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrchr(const char *, int) __attribute__((__pure__));
+# 515 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrev(char *);
+# 533 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strsep(char **, const char *);
+# 544 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strspn(const char *__s, const char *__accept) __attribute__((__pure__));
+# 557 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strstr(const char *, const char *) __attribute__((__pure__));
+# 576 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok(char *, const char *);
+# 593 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok_r(char *, const char *, char **);
+# 606 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strupr(char *);
+
+
+
+extern int strcoll(const char *s1, const char *s2);
+extern char *strerror(int errnum);
+extern size_t strxfrm(char *dest, const char *src, size_t n);
+
+
+
+}
+# 28 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 2
+# 80 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+
+# 80 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+bool Curve25519::eval(uint8_t result[32], const uint8_t s[32], const uint8_t x[32])
+{
+    limb_t x_1[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t x_2[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t x_3[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t z_2[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t z_3[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t A[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t B[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t C[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t D[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t E[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t AA[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t BB[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t DA[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    limb_t CB[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    uint8_t mask;
+    uint8_t sposn;
+    uint8_t select;
+    uint8_t swap;
+    bool retval;
+
+
+
+    if (x) {
+
+        BigNumberUtil::unpackLE(x_1, (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))), x, 32);
+        x_1[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] &= ((((limb_t)1) << ((8 * sizeof(limb_t)) - 1)) - 1);
+    } else {
+        memset(x_1, 0, sizeof(x_1));
+        x_1[0] = 9;
+    }
+# 120 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+    retval = (bool)(reduceQuick(x_1) & 0x01);
+
+
+    memset(x_2, 0, sizeof(x_2));
+    x_2[0] = 1;
+    memset(z_2, 0, sizeof(z_2));
+    memcpy(x_3, x_1, sizeof(x_1));
+    memcpy(z_3, x_2, sizeof(x_2));
+
+
+
+    mask = 0x40;
+    sposn = 31;
+    swap = 0;
+    for (uint8_t t = 255; t > 0; --t) {
+
+
+        select = s[sposn] & mask;
+        swap ^= select;
+        cswap(swap, x_2, x_3);
+        cswap(swap, z_2, z_3);
+
+
+        add(A, x_2, z_2);
+        square(AA, A);
+        sub(B, x_2, z_2);
+        square(BB, B);
+        sub(E, AA, BB);
+        add(C, x_3, z_3);
+        sub(D, x_3, z_3);
+        mul(DA, D, A);
+        mul(CB, C, B);
+        add(x_3, DA, CB);
+        square(x_3, x_3);
+        sub(z_3, DA, CB);
+        square(z_3, z_3);
+        mul(z_3, z_3, x_1);
+        mul(x_2, AA, BB);
+        mulA24(z_2, E);
+        add(z_2, z_2, AA);
+        mul(z_2, z_2, E);
+
+
+        mask >>= 1;
+        if (!mask) {
+            --sposn;
+            mask = 0x80;
+            swap = select << 7;
+        } else {
+            swap = select >> 1;
+        }
+    }
+
+
+    cswap(swap, x_2, x_3);
+    cswap(swap, z_2, z_3);
+
+
+    recip(z_3, z_2);
+    mul(x_2, x_2, z_3);
+
+
+    BigNumberUtil::packLE(result, 32, x_2, (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))));
+
+
+    clean(x_1);
+    clean(x_2);
+    clean(x_3);
+    clean(z_2);
+    clean(z_3);
+    clean(A);
+    clean(B);
+    clean(C);
+    clean(D);
+    clean(E);
+    clean(AA);
+    clean(BB);
+    clean(DA);
+    clean(CB);
+    return retval;
+}
+# 245 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::dh1(uint8_t k[32], uint8_t f[32])
+{
+    do {
+
+
+
+
+        RNG.rand(f, 32);
+        f[0] &= 0xF8;
+        f[31] = (f[31] & 0x7F) | 0x40;
+
+
+
+
+
+        eval(k, f, 0);
+
+
+
+
+    } while (isWeakPoint(k));
+}
+# 283 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+bool Curve25519::dh2(uint8_t k[32], uint8_t f[32])
+{
+    uint8_t weak;
+
+
+
+
+
+
+
+    weak = isWeakPoint(k);
+    weak |= ((eval(k, f, k) ^ 0x01) & 0x01);
+    weak |= isWeakPoint(k);
+    clean(f, 32);
+    return (bool)((weak ^ 0x01) & 0x01);
+}
+# 307 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+uint8_t Curve25519::isWeakPoint(const uint8_t k[32])
+{
+
+
+
+
+    static const uint8_t points[5][32] 
+# 313 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                                      __attribute__((__progmem__)) 
+# 313 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                                              = {
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0xE0, 0xEB, 0x7A, 0x7C, 0x3B, 0x41, 0xB8, 0xAE,
+         0x16, 0x56, 0xE3, 0xFA, 0xF1, 0x9F, 0xC4, 0x6A,
+         0xDA, 0x09, 0x8D, 0xEB, 0x9C, 0x32, 0xB1, 0xFD,
+         0x86, 0x62, 0x05, 0x16, 0x5F, 0x49, 0xB8, 0x00},
+        {0x5F, 0x9C, 0x95, 0xBC, 0xA3, 0x50, 0x8C, 0x24,
+         0xB1, 0xD0, 0xB1, 0x55, 0x9C, 0x83, 0xEF, 0x5B,
+         0x04, 0x44, 0x5C, 0xC4, 0x58, 0x1C, 0x8E, 0x86,
+         0xD8, 0x22, 0x4E, 0xDD, 0xD0, 0x9F, 0x11, 0x57},
+        {0xEC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F}
+    };
+
+
+
+
+
+
+    uint8_t result = 0;
+    for (uint8_t posn = 0; posn < 5; ++posn) {
+        const uint8_t *point = points[posn];
+        uint8_t check = (
+# 344 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                        (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 344 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                        &(point[31])
+# 344 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                        )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; })) 
+# 344 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                                                    ^ k[31]) & 0x7F;
+        for (uint8_t index = 31; index > 0; --index)
+            check |= (
+# 346 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                     (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 346 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                     &(point[index - 1])
+# 346 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                     )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; })) 
+# 346 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                                                        ^ k[index - 1]);
+        result |= (uint8_t)((((uint16_t)0x0100) - check) >> 8);
+    }
+
+
+    return result;
+}
+# 366 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::reduce(limb_t *result, limb_t *x, uint8_t size)
+{
+# 410 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+    dlimb_t carry;
+    uint8_t posn;
+
+
+
+
+    carry = ((dlimb_t)(x[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] >> ((8 * sizeof(limb_t)) - 1))) * 19U;
+    x[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] &= ((((limb_t)1) << ((8 * sizeof(limb_t)) - 1)) - 1);
+    for (posn = 0; posn < size; ++posn) {
+        carry += ((dlimb_t)(x[posn + (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))])) * 38U;
+        carry += x[posn];
+        x[posn] = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+    if (size < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))) {
+
+
+        for (posn = size; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+            carry += x[posn];
+            x[posn] = (limb_t)carry;
+            carry >>= (8 * sizeof(limb_t));
+        }
+    }
+
+
+
+
+
+    carry *= 38U;
+    carry += ((dlimb_t)(x[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] >> ((8 * sizeof(limb_t)) - 1))) * 19U;
+    x[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] &= ((((limb_t)1) << ((8 * sizeof(limb_t)) - 1)) - 1);
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        carry += x[posn];
+        x[posn] = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+
+
+
+
+
+
+    carry = 19U;
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        carry += x[posn];
+        x[posn + (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))] = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+
+
+
+
+
+
+
+    limb_t mask = (limb_t)(((slimb_t)(x[(((512) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1])) >> ((8 * sizeof(limb_t)) - 1));
+    limb_t nmask = ~mask;
+    x[(((512) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] &= ((((limb_t)1) << ((8 * sizeof(limb_t)) - 1)) - 1);
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        result[posn] = (x[posn] & nmask) | (x[posn + (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))] & mask);
+    }
+# 631 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+}
+# 646 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+limb_t Curve25519::reduceQuick(limb_t *x)
+{
+
+    limb_t temp[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    dlimb_t carry;
+    uint8_t posn;
+    limb_t *xx;
+    limb_t *tt;
+
+
+
+
+    carry = 19U;
+    xx = x;
+    tt = temp;
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        carry += *xx++;
+        *tt++ = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+
+
+
+
+
+
+    limb_t mask = (limb_t)(((slimb_t)(temp[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1])) >> ((8 * sizeof(limb_t)) - 1));
+    limb_t nmask = ~mask;
+    temp[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))) - 1] &= ((((limb_t)1) << ((8 * sizeof(limb_t)) - 1)) - 1);
+    xx = x;
+    tt = temp;
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        *xx = ((*xx) & nmask) | ((*tt++) & mask);
+        ++xx;
+    }
+
+
+    do { ; } while (0);
+
+
+    return nmask;
+# 765 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+}
+# 779 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::mulNoReduce(limb_t *result, const limb_t *x, const limb_t *y)
+{
+
+    uint8_t i, j;
+    dlimb_t carry;
+    limb_t word;
+    const limb_t *yy;
+    limb_t *rr;
+
+
+    carry = 0;
+    word = x[0];
+    yy = y;
+    rr = result;
+    for (i = 0; i < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++i) {
+        carry += ((dlimb_t)(*yy++)) * word;
+        *rr++ = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+    *rr = (limb_t)carry;
+
+
+    for (i = 1; i < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++i) {
+        word = x[i];
+        carry = 0;
+        yy = y;
+        rr = result + i;
+        for (j = 0; j < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++j) {
+            carry += ((dlimb_t)(*yy++)) * word;
+            carry += *rr;
+            *rr++ = (limb_t)carry;
+            carry >>= (8 * sizeof(limb_t));
+        }
+        *rr = (limb_t)carry;
+    }
+# 919 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+}
+# 931 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::mul(limb_t *result, const limb_t *x, const limb_t *y)
+{
+    limb_t temp[(((512) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    mulNoReduce(temp, x, y);
+    reduce(result, temp, (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))));
+    do { ; } while (0);
+    do { ; } while (0);
+}
+# 959 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::mulA24(limb_t *result, const limb_t *x)
+{
+
+
+
+
+
+    static limb_t const a24[2] 
+# 966 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                              __attribute__((__progmem__)) 
+# 966 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                                      = {0xDB41, 0x0001};
+# 975 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+    limb_t temp[(((512) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    uint8_t i, j;
+    dlimb_t carry = 0;
+    limb_t word = (
+# 978 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                 (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 978 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                 (&(a24[0]))
+# 978 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                 )); uint16_t __result; __asm__ __volatile__ ( "lpm %A0, Z+" "\n\t" "lpm %B0, Z" "\n\t" : "=r" (__result), "=z" (__addr16) : "1" (__addr16) ); __result; }))
+# 978 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                 );
+    const limb_t *xx = x;
+    limb_t *tt = temp;
+    for (i = 0; i < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++i) {
+        carry += ((dlimb_t)(*xx++)) * word;
+        *tt++ = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+    *tt = (limb_t)carry;
+
+
+    for (i = 1; i < (sizeof(a24) / sizeof(limb_t)); ++i) {
+        word = (
+# 990 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+              (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 990 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+              (&(a24[i]))
+# 990 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+              )); uint16_t __result; __asm__ __volatile__ ( "lpm %A0, Z+" "\n\t" "lpm %B0, Z" "\n\t" : "=r" (__result), "=z" (__addr16) : "1" (__addr16) ); __result; }))
+# 990 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+              );
+        carry = 0;
+        xx = x;
+        tt = temp + i;
+        for (j = 0; j < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++j) {
+            carry += ((dlimb_t)(*xx++)) * word;
+            carry += *tt;
+            *tt++ = (limb_t)carry;
+            carry >>= (8 * sizeof(limb_t));
+        }
+        *tt = (limb_t)carry;
+    }
+# 1053 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+    reduce(result, temp, (sizeof(a24) / sizeof(limb_t)));
+    do { ; } while (0);
+}
+# 1068 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::mul_P(limb_t *result, const limb_t *x, const limb_t *y)
+{
+    limb_t temp[(((512) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    uint8_t i, j;
+    dlimb_t carry;
+    limb_t word;
+    const limb_t *xx;
+    limb_t *tt;
+
+
+    carry = 0;
+    word = (
+# 1079 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+          (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 1079 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+          (&(y[0]))
+# 1079 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+          )); uint16_t __result; __asm__ __volatile__ ( "lpm %A0, Z+" "\n\t" "lpm %B0, Z" "\n\t" : "=r" (__result), "=z" (__addr16) : "1" (__addr16) ); __result; }))
+# 1079 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+          );
+    xx = x;
+    tt = temp;
+    for (i = 0; i < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++i) {
+        carry += ((dlimb_t)(*xx++)) * word;
+        *tt++ = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+    *tt = (limb_t)carry;
+
+
+    for (i = 1; i < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++i) {
+        word = (
+# 1091 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+              (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 1091 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+              (&(y[i]))
+# 1091 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+              )); uint16_t __result; __asm__ __volatile__ ( "lpm %A0, Z+" "\n\t" "lpm %B0, Z" "\n\t" : "=r" (__result), "=z" (__addr16) : "1" (__addr16) ); __result; }))
+# 1091 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+              );
+        carry = 0;
+        xx = x;
+        tt = temp + i;
+        for (j = 0; j < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++j) {
+            carry += ((dlimb_t)(*xx++)) * word;
+            carry += *tt;
+            *tt++ = (limb_t)carry;
+            carry >>= (8 * sizeof(limb_t));
+        }
+        *tt = (limb_t)carry;
+    }
+
+
+    reduce(result, temp, (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))));
+    do { ; } while (0);
+}
+# 1119 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::add(limb_t *result, const limb_t *x, const limb_t *y)
+{
+
+    dlimb_t carry = 0;
+    uint8_t posn;
+    limb_t *rr = result;
+
+
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        carry += *x++;
+        carry += *y++;
+        *rr++ = (limb_t)carry;
+        carry >>= (8 * sizeof(limb_t));
+    }
+# 1181 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+    reduceQuick(result);
+}
+# 1194 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::sub(limb_t *result, const limb_t *x, const limb_t *y)
+{
+
+    dlimb_t borrow;
+    uint8_t posn;
+    limb_t *rr = result;
+
+
+    borrow = 0;
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        borrow = ((dlimb_t)(*x++)) - (*y++) - ((borrow >> (8 * sizeof(limb_t))) & 0x01);
+        *rr++ = (limb_t)borrow;
+    }
+
+
+
+
+
+
+    rr = result;
+    borrow = (borrow >> (8 * sizeof(limb_t))) & 19U;
+    borrow = ((dlimb_t)(*rr)) - borrow;
+    *rr++ = (limb_t)borrow;
+    for (posn = 1; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        borrow = ((dlimb_t)(*rr)) - ((borrow >> (8 * sizeof(limb_t))) & 0x01);
+        *rr++ = (limb_t)borrow;
+    }
+    *(--rr) &= ((((limb_t)1) << ((8 * sizeof(limb_t)) - 1)) - 1);
+# 1297 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+}
+# 1311 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::cswap(limb_t select, limb_t *x, limb_t *y)
+{
+
+    uint8_t posn;
+    limb_t dummy;
+    limb_t sel;
+
+
+
+    sel = (limb_t)(((((dlimb_t)1) << (8 * sizeof(limb_t))) - select) >> (8 * sizeof(limb_t)));
+    --sel;
+
+
+
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        dummy = sel & (x[posn] ^ y[posn]);
+        x[posn] ^= dummy;
+        y[posn] ^= dummy;
+    }
+# 1397 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+}
+# 1411 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::cmove(limb_t select, limb_t *x, const limb_t *y)
+{
+
+    uint8_t posn;
+    limb_t dummy;
+    limb_t sel;
+
+
+
+    sel = (limb_t)(((((dlimb_t)1) << (8 * sizeof(limb_t))) - select) >> (8 * sizeof(limb_t)));
+    --sel;
+
+
+    for (posn = 0; posn < (((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t))); ++posn) {
+        dummy = sel & (x[posn] ^ y[posn]);
+        x[posn] ^= dummy;
+    }
+# 1483 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+}
+
+
+
+
+
+
+
+void Curve25519::pow250(limb_t *result, const limb_t *x)
+{
+    limb_t t1[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+    uint8_t i, j;
+# 1509 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+    square(t1, x);
+    for (j = 0; j < (10 - 1); ++j)
+        square(t1, t1);
+    mul(result, t1, x);
+    for (i = 0; i < ((250 / 10) - 2); ++i) {
+        for (j = 0; j < 10; ++j)
+            square(t1, t1);
+        mul(result, result, t1);
+    }
+
+
+
+    square(t1, result);
+    mul(result, result, t1);
+    for (j = 0; j < (10 - 2); ++j) {
+        square(t1, t1);
+        mul(result, result, t1);
+    }
+
+
+    clean(t1);
+}
+# 1539 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+void Curve25519::recip(limb_t *result, const limb_t *x)
+{
+
+
+
+
+    pow250(result, x);
+
+
+    square(result, result);
+    square(result, result);
+    mul(result, result, x);
+    square(result, result);
+    square(result, result);
+    mul(result, result, x);
+    square(result, result);
+    mul(result, result, x);
+}
+# 1573 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+bool Curve25519::sqrt(limb_t *result, const limb_t *x)
+{
+
+    static limb_t const numSqrtM1[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))] 
+# 1576 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp" 3
+                                                   __attribute__((__progmem__)) 
+# 1576 "/home/whistleblower/.platformio/lib/Crypto/Curve25519.cpp"
+                                                           = {
+        ((uint16_t)((0x4A0EA0B0))), ((uint16_t)(((uint32_t)((0x4A0EA0B0))) >> 16)), ((uint16_t)((0xC4EE1B27))), ((uint16_t)(((uint32_t)((0xC4EE1B27))) >> 16)), ((uint16_t)((0xAD2FE478))), ((uint16_t)(((uint32_t)((0xAD2FE478))) >> 16)), ((uint16_t)((0x2F431806))), ((uint16_t)(((uint32_t)((0x2F431806))) >> 16)),
+        ((uint16_t)((0x3DFBD7A7))), ((uint16_t)(((uint32_t)((0x3DFBD7A7))) >> 16)), ((uint16_t)((0x2B4D0099))), ((uint16_t)(((uint32_t)((0x2B4D0099))) >> 16)), ((uint16_t)((0x4FC1DF0B))), ((uint16_t)(((uint32_t)((0x4FC1DF0B))) >> 16)), ((uint16_t)((0x2B832480))), ((uint16_t)(((uint32_t)((0x2B832480))) >> 16))
+    };
+    limb_t y[(((256) + sizeof(limb_t) * 8 - 1) / (8 * sizeof(limb_t)))];
+
+
+
+
+
+
+    pow250(result, x);
+    square(result, result);
+    mul(result, result, x);
+    square(result, result);
+
+
+    square(y, result);
+    if (memcmp(x, y, sizeof(y)) == 0) {
+        clean(y);
+        return true;
+    }
+
+
+    mul_P(result, result, numSqrtM1);
+    square(y, result);
+    if (memcmp(x, y, sizeof(y)) == 0) {
+        clean(y);
+        return true;
+    }
+
+
+    clean(y);
+    return false;
+}

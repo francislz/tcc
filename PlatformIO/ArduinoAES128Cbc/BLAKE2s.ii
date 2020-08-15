@@ -1,0 +1,820 @@
+# 1 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+# 23 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.h"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Hash.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/Hash.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 1 3
+# 37 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 1 3 4
+# 9 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 3 4
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 1 3 4
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef signed int int8_t __attribute__((__mode__(__QI__)));
+typedef unsigned int uint8_t __attribute__((__mode__(__QI__)));
+typedef signed int int16_t __attribute__ ((__mode__ (__HI__)));
+typedef unsigned int uint16_t __attribute__ ((__mode__ (__HI__)));
+typedef signed int int32_t __attribute__ ((__mode__ (__SI__)));
+typedef unsigned int uint32_t __attribute__ ((__mode__ (__SI__)));
+
+typedef signed int int64_t __attribute__((__mode__(__DI__)));
+typedef unsigned int uint64_t __attribute__((__mode__(__DI__)));
+# 146 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 163 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_least8_t;
+
+
+
+
+typedef uint8_t uint_least8_t;
+
+
+
+
+typedef int16_t int_least16_t;
+
+
+
+
+typedef uint16_t uint_least16_t;
+
+
+
+
+typedef int32_t int_least32_t;
+
+
+
+
+typedef uint32_t uint_least32_t;
+
+
+
+
+
+
+
+typedef int64_t int_least64_t;
+
+
+
+
+
+
+typedef uint64_t uint_least64_t;
+# 217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_fast8_t;
+
+
+
+
+typedef uint8_t uint_fast8_t;
+
+
+
+
+typedef int16_t int_fast16_t;
+
+
+
+
+typedef uint16_t uint_fast16_t;
+
+
+
+
+typedef int32_t int_fast32_t;
+
+
+
+
+typedef uint32_t uint_fast32_t;
+
+
+
+
+
+
+
+typedef int64_t int_fast64_t;
+
+
+
+
+
+
+typedef uint64_t uint_fast64_t;
+# 277 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int64_t intmax_t;
+
+
+
+
+typedef uint64_t uintmax_t;
+# 10 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 2 3 4
+# 38 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 2 3
+# 77 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+typedef int32_t int_farptr_t;
+
+
+
+typedef uint32_t uint_farptr_t;
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Hash.h" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 149 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef int ptrdiff_t;
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef unsigned int size_t;
+# 426 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 28 "/home/whistleblower/.platformio/lib/Crypto/Hash.h" 2
+
+
+# 29 "/home/whistleblower/.platformio/lib/Crypto/Hash.h"
+class Hash
+{
+public:
+    Hash();
+    virtual ~Hash();
+
+    virtual size_t hashSize() const = 0;
+    virtual size_t blockSize() const = 0;
+
+    virtual void reset() = 0;
+    virtual void update(const void *data, size_t len) = 0;
+    virtual void finalize(void *hash, size_t len) = 0;
+
+    virtual void clear() = 0;
+
+    virtual void resetHMAC(const void *key, size_t keyLen) = 0;
+    virtual void finalizeHMAC(const void *key, size_t keyLen, void *hash, size_t hashLen) = 0;
+
+protected:
+    void formatHMACKey(void *block, const void *key, size_t len, uint8_t pad);
+};
+# 27 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.h" 2
+
+class BLAKE2s : public Hash
+{
+public:
+    BLAKE2s();
+    virtual ~BLAKE2s();
+
+    size_t hashSize() const;
+    size_t blockSize() const;
+
+    void reset();
+    void reset(uint8_t outputLength);
+    void reset(const void *key, size_t keyLen, uint8_t outputLength = 32);
+
+    void update(const void *data, size_t len);
+    void finalize(void *hash, size_t len);
+
+    void clear();
+
+    void resetHMAC(const void *key, size_t keyLen);
+    void finalizeHMAC(const void *key, size_t keyLen, void *hash, size_t hashLen);
+
+private:
+    struct {
+        uint32_t h[8];
+        uint32_t m[16];
+        uint64_t length;
+        uint8_t chunkSize;
+    } state;
+
+    void processChunk(uint32_t f0);
+};
+# 24 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 28 "/home/whistleblower/.platformio/lib/Crypto/Crypto.h" 2
+
+void clean(void *dest, size_t size);
+
+template <typename T>
+inline void clean(T &var)
+{
+    clean(&var, sizeof(T));
+}
+
+bool secure_compare(const void *data1, const void *data2, size_t len);
+# 25 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/utility/EndianUtil.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/utility/RotateUtil.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/utility/ProgMemUtil.h" 1
+# 27 "/home/whistleblower/.platformio/lib/Crypto/utility/ProgMemUtil.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 1 3
+# 89 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 90 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 1 3
+# 99 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/sfr_defs.h" 1 3
+# 100 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 272 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/iom328p.h" 1 3
+# 273 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 627 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/portpins.h" 1 3
+# 628 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/common.h" 1 3
+# 630 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/version.h" 1 3
+# 632 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+
+
+
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 1 3
+# 239 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 3
+
+# 239 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 3
+typedef struct
+{
+    unsigned char low;
+    unsigned char high;
+    unsigned char extended;
+} __fuse_t;
+# 639 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/lock.h" 1 3
+# 642 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 91 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 116 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern "C" {
+# 1158 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const void * memchr_P(const void *, int __val, size_t __len) __attribute__((__const__));
+# 1172 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int memcmp_P(const void *, const void *, size_t) __attribute__((__pure__));
+
+
+
+
+
+
+extern void *memccpy_P(void *, const void *, int __val, size_t);
+# 1188 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern void *memcpy_P(void *, const void *, size_t);
+
+
+
+
+
+
+extern void *memmem_P(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 1207 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const void * memrchr_P(const void *, int __val, size_t __len) __attribute__((__const__));
+# 1217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcat_P(char *, const char *);
+# 1233 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strchr_P(const char *, int __val) __attribute__((__const__));
+# 1245 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strchrnul_P(const char *, int __val) __attribute__((__const__));
+# 1258 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcmp_P(const char *, const char *) __attribute__((__pure__));
+# 1268 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcpy_P(char *, const char *);
+# 1285 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcasecmp_P(const char *, const char *) __attribute__((__pure__));
+
+
+
+
+
+
+extern char *strcasestr_P(const char *, const char *) __attribute__((__pure__));
+# 1305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strcspn_P(const char *__s, const char * __reject) __attribute__((__pure__));
+# 1321 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcat_P (char *, const char *, size_t );
+# 1334 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcpy_P (char *, const char *, size_t );
+# 1346 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strnlen_P(const char *, size_t) __attribute__((__const__));
+# 1357 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncmp_P(const char *, const char *, size_t) __attribute__((__pure__));
+# 1376 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncasecmp_P(const char *, const char *, size_t) __attribute__((__pure__));
+# 1387 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncat_P(char *, const char *, size_t);
+# 1401 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncpy_P(char *, const char *, size_t);
+# 1416 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strpbrk_P(const char *__s, const char * __accept) __attribute__((__pure__));
+# 1427 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strrchr_P(const char *, int __val) __attribute__((__const__));
+# 1447 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strsep_P(char **__sp, const char * __delim);
+# 1460 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strspn_P(const char *__s, const char * __accept) __attribute__((__pure__));
+# 1474 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strstr_P(const char *, const char *) __attribute__((__pure__));
+# 1496 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strtok_P(char *__s, const char * __delim);
+# 1516 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strtok_rP(char *__s, const char * __delim, char **__last);
+# 1529 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlen_PF(uint_farptr_t src) __attribute__((__const__));
+# 1545 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strnlen_PF(uint_farptr_t src, size_t len) __attribute__((__const__));
+# 1560 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern void *memcpy_PF(void *dest, uint_farptr_t src, size_t len);
+# 1575 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcpy_PF(char *dest, uint_farptr_t src);
+# 1595 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncpy_PF(char *dest, uint_farptr_t src, size_t len);
+# 1611 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcat_PF(char *dest, uint_farptr_t src);
+# 1632 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcat_PF(char *dst, uint_farptr_t src, size_t siz);
+# 1649 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncat_PF(char *dest, uint_farptr_t src, size_t len);
+# 1665 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcmp_PF(const char *s1, uint_farptr_t s2) __attribute__((__pure__));
+# 1682 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncmp_PF(const char *s1, uint_farptr_t s2, size_t n) __attribute__((__pure__));
+# 1698 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcasecmp_PF(const char *s1, uint_farptr_t s2) __attribute__((__pure__));
+# 1716 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncasecmp_PF(const char *s1, uint_farptr_t s2, size_t n) __attribute__((__pure__));
+# 1732 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strstr_PF(const char *s1, uint_farptr_t s2);
+# 1744 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcpy_PF(char *dst, uint_farptr_t src, size_t siz);
+# 1760 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int memcmp_PF(const void *, uint_farptr_t, size_t) __attribute__((__pure__));
+# 1779 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t __strlen_P(const char *) __attribute__((__const__));
+__attribute__((__always_inline__)) static __inline__ size_t strlen_P(const char * s);
+static __inline__ size_t strlen_P(const char *s) {
+  return __builtin_constant_p(__builtin_strlen(s))
+     ? __builtin_strlen(s) : __strlen_P(s);
+}
+
+
+
+}
+# 28 "/home/whistleblower/.platformio/lib/Crypto/utility/ProgMemUtil.h" 2
+# 28 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 1 3
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 47 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 2 3
+# 58 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern "C" {
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int ffs(int __val) __attribute__((__const__));
+
+
+
+
+
+extern int ffsl(long __val) __attribute__((__const__));
+
+
+
+
+
+__extension__ extern int ffsll(long long __val) __attribute__((__const__));
+# 150 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memccpy(void *, const void *, int, size_t);
+# 162 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memchr(const void *, int, size_t) __attribute__((__pure__));
+# 180 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int memcmp(const void *, const void *, size_t) __attribute__((__pure__));
+# 191 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memcpy(void *, const void *, size_t);
+# 203 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmem(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 213 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmove(void *, const void *, size_t);
+# 225 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memrchr(const void *, int, size_t) __attribute__((__pure__));
+# 235 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memset(void *, int, size_t);
+# 248 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcat(char *, const char *);
+# 262 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchr(const char *, int) __attribute__((__pure__));
+# 274 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchrnul(const char *, int) __attribute__((__pure__));
+# 287 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcmp(const char *, const char *) __attribute__((__pure__));
+# 305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcpy(char *, const char *);
+# 320 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcasecmp(const char *, const char *) __attribute__((__pure__));
+# 333 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcasestr(const char *, const char *) __attribute__((__pure__));
+# 344 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strcspn(const char *__s, const char *__reject) __attribute__((__pure__));
+# 364 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strdup(const char *s1);
+# 377 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcat(char *, const char *, size_t);
+# 388 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcpy(char *, const char *, size_t);
+# 399 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlen(const char *) __attribute__((__pure__));
+# 411 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strlwr(char *);
+# 422 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncat(char *, const char *, size_t);
+# 434 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 449 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncpy(char *, const char *, size_t);
+# 464 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncasecmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 478 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strnlen(const char *, size_t) __attribute__((__pure__));
+# 491 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strpbrk(const char *__s, const char *__accept) __attribute__((__pure__));
+# 505 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrchr(const char *, int) __attribute__((__pure__));
+# 515 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrev(char *);
+# 533 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strsep(char **, const char *);
+# 544 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strspn(const char *__s, const char *__accept) __attribute__((__pure__));
+# 557 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strstr(const char *, const char *) __attribute__((__pure__));
+# 576 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok(char *, const char *);
+# 593 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok_r(char *, const char *, char **);
+# 606 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strupr(char *);
+
+
+
+extern int strcoll(const char *s1, const char *s2);
+extern char *strerror(int errnum);
+extern size_t strxfrm(char *dest, const char *src, size_t n);
+
+
+
+}
+# 29 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 2
+# 75 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+
+# 75 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+BLAKE2s::BLAKE2s()
+{
+    reset();
+}
+
+
+
+
+
+BLAKE2s::~BLAKE2s()
+{
+    clean(state);
+}
+
+size_t BLAKE2s::hashSize() const
+{
+    return 32;
+}
+
+size_t BLAKE2s::blockSize() const
+{
+    return 64;
+}
+# 109 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+void BLAKE2s::reset()
+{
+    state.h[0] = 0x6A09E667 ^ 0x01010020;
+    state.h[1] = 0xBB67AE85;
+    state.h[2] = 0x3C6EF372;
+    state.h[3] = 0xA54FF53A;
+    state.h[4] = 0x510E527F;
+    state.h[5] = 0x9B05688C;
+    state.h[6] = 0x1F83D9AB;
+    state.h[7] = 0x5BE0CD19;
+    state.chunkSize = 0;
+    state.length = 0;
+}
+# 130 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+void BLAKE2s::reset(uint8_t outputLength)
+{
+    if (outputLength < 1)
+        outputLength = 1;
+    else if (outputLength > 32)
+        outputLength = 32;
+    state.h[0] = 0x6A09E667 ^ 0x01010000 ^ outputLength;
+    state.h[1] = 0xBB67AE85;
+    state.h[2] = 0x3C6EF372;
+    state.h[3] = 0xA54FF53A;
+    state.h[4] = 0x510E527F;
+    state.h[5] = 0x9B05688C;
+    state.h[6] = 0x1F83D9AB;
+    state.h[7] = 0x5BE0CD19;
+    state.chunkSize = 0;
+    state.length = 0;
+}
+# 160 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+void BLAKE2s::reset(const void *key, size_t keyLen, uint8_t outputLength)
+{
+    if (keyLen > 32)
+        keyLen = 32;
+    if (outputLength < 1)
+        outputLength = 1;
+    else if (outputLength > 32)
+        outputLength = 32;
+    state.h[0] = 0x6A09E667 ^ 0x01010000 ^ (keyLen << 8) ^ outputLength;
+    state.h[1] = 0xBB67AE85;
+    state.h[2] = 0x3C6EF372;
+    state.h[3] = 0xA54FF53A;
+    state.h[4] = 0x510E527F;
+    state.h[5] = 0x9B05688C;
+    state.h[6] = 0x1F83D9AB;
+    state.h[7] = 0x5BE0CD19;
+    if (keyLen > 0) {
+
+        memcpy(state.m, key, keyLen);
+        memset(((uint8_t *)state.m) + keyLen, 0, 64 - keyLen);
+        state.chunkSize = 64;
+        state.length = 64;
+    } else {
+
+        state.chunkSize = 0;
+        state.length = 0;
+    }
+}
+
+void BLAKE2s::update(const void *data, size_t len)
+{
+
+    const uint8_t *d = (const uint8_t *)data;
+    while (len > 0) {
+        if (state.chunkSize == 64) {
+
+
+            processChunk(0);
+            state.chunkSize = 0;
+        }
+        uint8_t size = 64 - state.chunkSize;
+        if (size > len)
+            size = len;
+        memcpy(((uint8_t *)state.m) + state.chunkSize, d, size);
+        state.chunkSize += size;
+        state.length += size;
+        len -= size;
+        d += size;
+    }
+}
+
+void BLAKE2s::finalize(void *hash, size_t len)
+{
+
+    memset(((uint8_t *)state.m) + state.chunkSize, 0, 64 - state.chunkSize);
+    processChunk(0xFFFFFFFF);
+
+
+    for (uint8_t posn = 0; posn < 8; ++posn)
+        state.m[posn] = (state.h[posn]);
+
+
+    if (len > 32)
+        len = 32;
+    memcpy(hash, state.m, len);
+}
+
+void BLAKE2s::clear()
+{
+    clean(state);
+    reset();
+}
+
+void BLAKE2s::resetHMAC(const void *key, size_t keyLen)
+{
+    formatHMACKey(state.m, key, keyLen, 0x36);
+    state.length += 64;
+    processChunk(0);
+}
+
+void BLAKE2s::finalizeHMAC(const void *key, size_t keyLen, void *hash, size_t hashLen)
+{
+    uint8_t temp[32];
+    finalize(temp, sizeof(temp));
+    formatHMACKey(state.m, key, keyLen, 0x5C);
+    state.length += 64;
+    processChunk(0);
+    update(temp, sizeof(temp));
+    finalize(hash, hashLen);
+    clean(temp);
+}
+
+
+static const uint8_t sigma[10][16] 
+# 253 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+                                  __attribute__((__progmem__)) 
+# 253 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+                                          = {
+    { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
+    {14, 10, 4, 8, 9, 15, 13, 6, 1, 12, 0, 2, 11, 7, 5, 3},
+    {11, 8, 12, 0, 5, 2, 15, 13, 10, 14, 3, 6, 7, 1, 9, 4},
+    { 7, 9, 3, 1, 13, 12, 11, 14, 2, 6, 5, 10, 4, 0, 15, 8},
+    { 9, 0, 5, 7, 2, 4, 10, 15, 14, 1, 11, 12, 6, 8, 3, 13},
+    { 2, 12, 6, 10, 0, 11, 8, 3, 4, 13, 7, 5, 15, 14, 1, 9},
+    {12, 5, 1, 15, 14, 13, 4, 10, 0, 7, 6, 3, 9, 2, 8, 11},
+    {13, 11, 7, 14, 12, 1, 3, 9, 5, 0, 15, 4, 8, 6, 2, 10},
+    { 6, 15, 14, 9, 11, 3, 0, 8, 12, 2, 13, 7, 1, 4, 10, 5},
+    {10, 2, 8, 4, 7, 6, 1, 5, 15, 11, 9, 14, 3, 12, 13 , 0}
+};
+# 282 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+void BLAKE2s::processChunk(uint32_t f0)
+{
+    uint8_t index;
+    uint32_t v[16];
+# 294 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+    memcpy(v, state.h, sizeof(state.h));
+    v[8] = 0x6A09E667;
+    v[9] = 0xBB67AE85;
+    v[10] = 0x3C6EF372;
+    v[11] = 0xA54FF53A;
+    v[12] = 0x510E527F ^ (uint32_t)(state.length);
+    v[13] = 0x9B05688C ^ (uint32_t)(state.length >> 32);
+    v[14] = 0x1F83D9AB ^ f0;
+    v[15] = 0x5BE0CD19;
+
+
+    for (index = 0; index < 10; ++index) {
+
+        do { uint32_t _b = (v[4]); uint32_t _a = (v[0]) + _b + state.m[
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (0)])
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[12]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[8]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (0) + 1])
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 307 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[12]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[0]) = _a; (v[4]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[8]) = _c; } while (0);
+        do { uint32_t _b = (v[5]); uint32_t _a = (v[1]) + _b + state.m[
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (1)])
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[13]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[9]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (1) + 1])
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 308 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[13]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[1]) = _a; (v[5]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[9]) = _c; } while (0);
+        do { uint32_t _b = (v[6]); uint32_t _a = (v[2]) + _b + state.m[
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (2)])
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[14]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[10]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (2) + 1])
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 309 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[14]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[2]) = _a; (v[6]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[10]) = _c; } while (0);
+        do { uint32_t _b = (v[7]); uint32_t _a = (v[3]) + _b + state.m[
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (3)])
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[15]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[11]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (3) + 1])
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 310 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[15]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[3]) = _a; (v[7]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[11]) = _c; } while (0);
+
+
+        do { uint32_t _b = (v[5]); uint32_t _a = (v[0]) + _b + state.m[
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (4)])
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[15]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[10]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (4) + 1])
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 313 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[15]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[0]) = _a; (v[5]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[10]) = _c; } while (0);
+        do { uint32_t _b = (v[6]); uint32_t _a = (v[1]) + _b + state.m[
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (5)])
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[12]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[11]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (5) + 1])
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 314 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[12]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[1]) = _a; (v[6]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[11]) = _c; } while (0);
+        do { uint32_t _b = (v[7]); uint32_t _a = (v[2]) + _b + state.m[
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (6)])
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[13]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[8]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (6) + 1])
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 315 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[13]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[2]) = _a; (v[7]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[8]) = _c; } while (0);
+        do { uint32_t _b = (v[4]); uint32_t _a = (v[3]) + _b + state.m[
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (7)])
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; uint32_t _d = (((__extension__ ({ uint32_t _temp = ((((v[14]) ^ _a))); (_temp << (16)) | (_temp >> (32 - (16))); })))); uint32_t _c = (v[9]) + _d; _b = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (16)) | (_temp >> (32 - (16))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); _a += _b + state.m[
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       &(sigma[index][2 * (7) + 1])
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp" 3
+       )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; }))
+# 316 "/home/whistleblower/.platformio/lib/Crypto/BLAKE2s.cpp"
+       ]; (v[14]) = _d = (((__extension__ ({ uint32_t _temp = (((_d ^ _a))); (_temp << (24)) | (_temp >> (32 - (24))); })))); _c += _d; (v[3]) = _a; (v[4]) = (((__extension__ ({ uint32_t _temp = ((__extension__ ({ uint32_t _temp = (((_b ^ _c))); (_temp << (24)) | (_temp >> (32 - (24))); }))); (_temp << (1)) | (_temp >> (32 - (1))); })))); (v[9]) = _c; } while (0);
+    }
+
+
+    for (index = 0; index < 8; ++index)
+        state.h[index] ^= (v[index] ^ v[index + 8]);
+}

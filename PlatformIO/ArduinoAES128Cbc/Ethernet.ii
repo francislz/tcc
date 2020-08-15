@@ -1,0 +1,3520 @@
+# 1 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp"
+# 21 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 1
+# 23 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 1 3
+# 48 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef unsigned int size_t;
+# 49 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 2 3
+
+
+
+
+
+
+
+extern "C" {
+# 70 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+typedef struct {
+ int quot;
+ int rem;
+} div_t;
+
+
+typedef struct {
+ long quot;
+ long rem;
+} ldiv_t;
+
+
+typedef int (*__compar_fn_t)(const void *, const void *);
+# 116 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern void abort(void) __attribute__((__noreturn__));
+
+
+
+
+extern int abs(int __i) __attribute__((__const__));
+# 130 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern long labs(long __i) __attribute__((__const__));
+# 153 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern void *bsearch(const void *__key, const void *__base, size_t __nmemb,
+       size_t __size, int (*__compar)(const void *, const void *));
+
+
+
+
+
+
+
+extern div_t div(int __num, int __denom) __asm__("__divmodhi4") __attribute__((__const__));
+
+
+
+
+
+extern ldiv_t ldiv(long __num, long __denom) __asm__("__divmodsi4") __attribute__((__const__));
+# 185 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern void qsort(void *__base, size_t __nmemb, size_t __size,
+    __compar_fn_t __compar);
+# 218 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern long strtol(const char *__nptr, char **__endptr, int __base);
+# 252 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern unsigned long strtoul(const char *__nptr, char **__endptr, int __base);
+# 264 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern long atol(const char *__s) __attribute__((__pure__));
+# 276 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern int atoi(const char *__s) __attribute__((__pure__));
+# 288 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern void exit(int __status) __attribute__((__noreturn__));
+# 300 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern void *malloc(size_t __size) __attribute__((__malloc__));
+
+
+
+
+
+
+extern void free(void *__ptr);
+
+
+
+
+extern size_t __malloc_margin;
+
+
+
+
+extern char *__malloc_heap_start;
+
+
+
+
+extern char *__malloc_heap_end;
+
+
+
+
+
+
+extern void *calloc(size_t __nele, size_t __size) __attribute__((__malloc__));
+# 348 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern void *realloc(void *__ptr, size_t __size) __attribute__((__malloc__));
+
+extern double strtod(const char *__nptr, char **__endptr);
+# 361 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern double atof(const char *__nptr);
+# 383 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern int rand(void);
+
+
+
+extern void srand(unsigned int __seed);
+
+
+
+
+
+
+extern int rand_r(unsigned long *__ctx);
+# 428 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern __inline__ __attribute__((__gnu_inline__))
+char *itoa (int __val, char *__s, int __radix)
+{
+    if (!__builtin_constant_p (__radix)) {
+ extern char *__itoa (int, char *, int);
+ return __itoa (__val, __s, __radix);
+    } else if (__radix < 2 || __radix > 36) {
+ *__s = 0;
+ return __s;
+    } else {
+ extern char *__itoa_ncheck (int, char *, unsigned char);
+ return __itoa_ncheck (__val, __s, __radix);
+    }
+}
+# 473 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern __inline__ __attribute__((__gnu_inline__))
+char *ltoa (long __val, char *__s, int __radix)
+{
+    if (!__builtin_constant_p (__radix)) {
+ extern char *__ltoa (long, char *, int);
+ return __ltoa (__val, __s, __radix);
+    } else if (__radix < 2 || __radix > 36) {
+ *__s = 0;
+ return __s;
+    } else {
+ extern char *__ltoa_ncheck (long, char *, unsigned char);
+ return __ltoa_ncheck (__val, __s, __radix);
+    }
+}
+# 516 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern __inline__ __attribute__((__gnu_inline__))
+char *utoa (unsigned int __val, char *__s, int __radix)
+{
+    if (!__builtin_constant_p (__radix)) {
+ extern char *__utoa (unsigned int, char *, int);
+ return __utoa (__val, __s, __radix);
+    } else if (__radix < 2 || __radix > 36) {
+ *__s = 0;
+ return __s;
+    } else {
+ extern char *__utoa_ncheck (unsigned int, char *, unsigned char);
+ return __utoa_ncheck (__val, __s, __radix);
+    }
+}
+# 558 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern __inline__ __attribute__((__gnu_inline__))
+char *ultoa (unsigned long __val, char *__s, int __radix)
+{
+    if (!__builtin_constant_p (__radix)) {
+ extern char *__ultoa (unsigned long, char *, int);
+ return __ultoa (__val, __s, __radix);
+    } else if (__radix < 2 || __radix > 36) {
+ *__s = 0;
+ return __s;
+    } else {
+ extern char *__ultoa_ncheck (unsigned long, char *, unsigned char);
+ return __ultoa_ncheck (__val, __s, __radix);
+    }
+}
+# 590 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern long random(void);
+
+
+
+
+extern void srandom(unsigned long __seed);
+
+
+
+
+
+
+
+extern long random_r(unsigned long *__ctx);
+# 649 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern char *dtostre(double __val, char *__s, unsigned char __prec,
+       unsigned char __flags);
+# 666 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern char *dtostrf(double __val, signed char __width,
+                     unsigned char __prec, char *__s);
+# 685 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdlib.h" 3
+extern int atexit(void (*)(void));
+extern int system (const char *);
+extern char *getenv (const char *);
+
+
+
+}
+# 24 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdbool.h" 1 3 4
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 1 3
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 47 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 2 3
+# 58 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern "C" {
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int ffs(int __val) __attribute__((__const__));
+
+
+
+
+
+extern int ffsl(long __val) __attribute__((__const__));
+
+
+
+
+
+__extension__ extern int ffsll(long long __val) __attribute__((__const__));
+# 150 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memccpy(void *, const void *, int, size_t);
+# 162 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memchr(const void *, int, size_t) __attribute__((__pure__));
+# 180 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int memcmp(const void *, const void *, size_t) __attribute__((__pure__));
+# 191 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memcpy(void *, const void *, size_t);
+# 203 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmem(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 213 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmove(void *, const void *, size_t);
+# 225 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memrchr(const void *, int, size_t) __attribute__((__pure__));
+# 235 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memset(void *, int, size_t);
+# 248 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcat(char *, const char *);
+# 262 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchr(const char *, int) __attribute__((__pure__));
+# 274 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchrnul(const char *, int) __attribute__((__pure__));
+# 287 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcmp(const char *, const char *) __attribute__((__pure__));
+# 305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcpy(char *, const char *);
+# 320 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcasecmp(const char *, const char *) __attribute__((__pure__));
+# 333 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcasestr(const char *, const char *) __attribute__((__pure__));
+# 344 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strcspn(const char *__s, const char *__reject) __attribute__((__pure__));
+# 364 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strdup(const char *s1);
+# 377 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcat(char *, const char *, size_t);
+# 388 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcpy(char *, const char *, size_t);
+# 399 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlen(const char *) __attribute__((__pure__));
+# 411 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strlwr(char *);
+# 422 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncat(char *, const char *, size_t);
+# 434 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 449 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncpy(char *, const char *, size_t);
+# 464 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncasecmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 478 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strnlen(const char *, size_t) __attribute__((__pure__));
+# 491 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strpbrk(const char *__s, const char *__accept) __attribute__((__pure__));
+# 505 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrchr(const char *, int) __attribute__((__pure__));
+# 515 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrev(char *);
+# 533 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strsep(char **, const char *);
+# 544 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strspn(const char *__s, const char *__accept) __attribute__((__pure__));
+# 557 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strstr(const char *, const char *) __attribute__((__pure__));
+# 576 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok(char *, const char *);
+# 593 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok_r(char *, const char *, char **);
+# 606 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strupr(char *);
+
+
+
+extern int strcoll(const char *s1, const char *s2);
+extern char *strerror(int errnum);
+extern size_t strxfrm(char *dest, const char *src, size_t n);
+
+
+
+}
+# 26 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 1 3
+# 121 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern "C" {
+
+
+
+
+
+extern double cos(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double sin(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double tan(double __x) __attribute__((__const__));
+
+
+
+
+
+
+extern double fabs(double __x) __attribute__((__const__));
+
+
+
+
+
+
+extern double fmod(double __x, double __y) __attribute__((__const__));
+# 168 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern double modf(double __x, double *__iptr);
+
+
+extern float modff (float __x, float *__iptr);
+
+
+
+
+extern double sqrt(double __x) __attribute__((__const__));
+
+
+extern float sqrtf (float) __attribute__((__const__));
+
+
+
+
+extern double cbrt(double __x) __attribute__((__const__));
+# 195 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern double hypot (double __x, double __y) __attribute__((__const__));
+
+
+
+
+
+
+
+extern double square(double __x) __attribute__((__const__));
+
+
+
+
+
+
+extern double floor(double __x) __attribute__((__const__));
+
+
+
+
+
+
+extern double ceil(double __x) __attribute__((__const__));
+# 235 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern double frexp(double __x, int *__pexp);
+
+
+
+
+
+
+
+extern double ldexp(double __x, int __exp) __attribute__((__const__));
+
+
+
+
+
+extern double exp(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double cosh(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double sinh(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double tanh(double __x) __attribute__((__const__));
+
+
+
+
+
+
+
+extern double acos(double __x) __attribute__((__const__));
+
+
+
+
+
+
+
+extern double asin(double __x) __attribute__((__const__));
+
+
+
+
+
+
+extern double atan(double __x) __attribute__((__const__));
+# 299 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern double atan2(double __y, double __x) __attribute__((__const__));
+
+
+
+
+
+extern double log(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double log10(double __x) __attribute__((__const__));
+
+
+
+
+
+extern double pow(double __x, double __y) __attribute__((__const__));
+
+
+
+
+
+
+extern int isnan(double __x) __attribute__((__const__));
+# 334 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern int isinf(double __x) __attribute__((__const__));
+
+
+
+
+
+
+__attribute__((__const__)) static inline int isfinite (double __x)
+{
+    unsigned char __exp;
+    __asm__ (
+ "mov	%0, %C1		\n\t"
+ "lsl	%0		\n\t"
+ "mov	%0, %D1		\n\t"
+ "rol	%0		"
+ : "=r" (__exp)
+ : "r" (__x) );
+    return __exp != 0xff;
+}
+
+
+
+
+
+
+__attribute__((__const__)) static inline double copysign (double __x, double __y)
+{
+    __asm__ (
+ "bst	%D2, 7	\n\t"
+ "bld	%D0, 7	"
+ : "=r" (__x)
+ : "0" (__x), "r" (__y) );
+    return __x;
+}
+# 377 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern int signbit (double __x) __attribute__((__const__));
+
+
+
+
+
+
+extern double fdim (double __x, double __y) __attribute__((__const__));
+# 393 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern double fma (double __x, double __y, double __z) __attribute__((__const__));
+
+
+
+
+
+
+
+extern double fmax (double __x, double __y) __attribute__((__const__));
+
+
+
+
+
+
+
+extern double fmin (double __x, double __y) __attribute__((__const__));
+
+
+
+
+
+
+extern double trunc (double __x) __attribute__((__const__));
+# 427 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern double round (double __x) __attribute__((__const__));
+# 440 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern long lround (double __x) __attribute__((__const__));
+# 454 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/math.h" 3
+extern long lrint (double __x) __attribute__((__const__));
+
+
+
+}
+# 27 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 1 3
+# 88 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 1 3
+# 37 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 1 3 4
+# 9 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 3 4
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 1 3 4
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef signed int int8_t __attribute__((__mode__(__QI__)));
+typedef unsigned int uint8_t __attribute__((__mode__(__QI__)));
+typedef signed int int16_t __attribute__ ((__mode__ (__HI__)));
+typedef unsigned int uint16_t __attribute__ ((__mode__ (__HI__)));
+typedef signed int int32_t __attribute__ ((__mode__ (__SI__)));
+typedef unsigned int uint32_t __attribute__ ((__mode__ (__SI__)));
+
+typedef signed int int64_t __attribute__((__mode__(__DI__)));
+typedef unsigned int uint64_t __attribute__((__mode__(__DI__)));
+# 146 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 163 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_least8_t;
+
+
+
+
+typedef uint8_t uint_least8_t;
+
+
+
+
+typedef int16_t int_least16_t;
+
+
+
+
+typedef uint16_t uint_least16_t;
+
+
+
+
+typedef int32_t int_least32_t;
+
+
+
+
+typedef uint32_t uint_least32_t;
+
+
+
+
+
+
+
+typedef int64_t int_least64_t;
+
+
+
+
+
+
+typedef uint64_t uint_least64_t;
+# 217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_fast8_t;
+
+
+
+
+typedef uint8_t uint_fast8_t;
+
+
+
+
+typedef int16_t int_fast16_t;
+
+
+
+
+typedef uint16_t uint_fast16_t;
+
+
+
+
+typedef int32_t int_fast32_t;
+
+
+
+
+typedef uint32_t uint_fast32_t;
+
+
+
+
+
+
+
+typedef int64_t int_fast64_t;
+
+
+
+
+
+
+typedef uint64_t uint_fast64_t;
+# 277 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int64_t intmax_t;
+
+
+
+
+typedef uint64_t uintmax_t;
+# 10 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 2 3 4
+# 38 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 2 3
+# 77 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+typedef int32_t int_farptr_t;
+
+
+
+typedef uint32_t uint_farptr_t;
+# 89 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 90 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 1 3
+# 99 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/sfr_defs.h" 1 3
+# 100 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 272 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/iom328p.h" 1 3
+# 273 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 627 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/portpins.h" 1 3
+# 628 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/common.h" 1 3
+# 630 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/version.h" 1 3
+# 632 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+
+
+
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 1 3
+# 239 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/fuse.h" 3
+typedef struct
+{
+    unsigned char low;
+    unsigned char high;
+    unsigned char extended;
+} __fuse_t;
+# 639 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/lock.h" 1 3
+# 642 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/io.h" 2 3
+# 91 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 2 3
+# 116 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern "C" {
+# 1158 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const void * memchr_P(const void *, int __val, size_t __len) __attribute__((__const__));
+# 1172 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int memcmp_P(const void *, const void *, size_t) __attribute__((__pure__));
+
+
+
+
+
+
+extern void *memccpy_P(void *, const void *, int __val, size_t);
+# 1188 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern void *memcpy_P(void *, const void *, size_t);
+
+
+
+
+
+
+extern void *memmem_P(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 1207 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const void * memrchr_P(const void *, int __val, size_t __len) __attribute__((__const__));
+# 1217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcat_P(char *, const char *);
+# 1233 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strchr_P(const char *, int __val) __attribute__((__const__));
+# 1245 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strchrnul_P(const char *, int __val) __attribute__((__const__));
+# 1258 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcmp_P(const char *, const char *) __attribute__((__pure__));
+# 1268 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcpy_P(char *, const char *);
+# 1285 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcasecmp_P(const char *, const char *) __attribute__((__pure__));
+
+
+
+
+
+
+extern char *strcasestr_P(const char *, const char *) __attribute__((__pure__));
+# 1305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strcspn_P(const char *__s, const char * __reject) __attribute__((__pure__));
+# 1321 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcat_P (char *, const char *, size_t );
+# 1334 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcpy_P (char *, const char *, size_t );
+# 1346 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strnlen_P(const char *, size_t) __attribute__((__const__));
+# 1357 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncmp_P(const char *, const char *, size_t) __attribute__((__pure__));
+# 1376 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncasecmp_P(const char *, const char *, size_t) __attribute__((__pure__));
+# 1387 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncat_P(char *, const char *, size_t);
+# 1401 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncpy_P(char *, const char *, size_t);
+# 1416 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strpbrk_P(const char *__s, const char * __accept) __attribute__((__pure__));
+# 1427 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern const char * strrchr_P(const char *, int __val) __attribute__((__const__));
+# 1447 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strsep_P(char **__sp, const char * __delim);
+# 1460 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strspn_P(const char *__s, const char * __accept) __attribute__((__pure__));
+# 1474 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strstr_P(const char *, const char *) __attribute__((__pure__));
+# 1496 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strtok_P(char *__s, const char * __delim);
+# 1516 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strtok_rP(char *__s, const char * __delim, char **__last);
+# 1529 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlen_PF(uint_farptr_t src) __attribute__((__const__));
+# 1545 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strnlen_PF(uint_farptr_t src, size_t len) __attribute__((__const__));
+# 1560 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern void *memcpy_PF(void *dest, uint_farptr_t src, size_t len);
+# 1575 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcpy_PF(char *dest, uint_farptr_t src);
+# 1595 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncpy_PF(char *dest, uint_farptr_t src, size_t len);
+# 1611 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strcat_PF(char *dest, uint_farptr_t src);
+# 1632 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcat_PF(char *dst, uint_farptr_t src, size_t siz);
+# 1649 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strncat_PF(char *dest, uint_farptr_t src, size_t len);
+# 1665 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcmp_PF(const char *s1, uint_farptr_t s2) __attribute__((__pure__));
+# 1682 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncmp_PF(const char *s1, uint_farptr_t s2, size_t n) __attribute__((__pure__));
+# 1698 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strcasecmp_PF(const char *s1, uint_farptr_t s2) __attribute__((__pure__));
+# 1716 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int strncasecmp_PF(const char *s1, uint_farptr_t s2, size_t n) __attribute__((__pure__));
+# 1732 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern char *strstr_PF(const char *s1, uint_farptr_t s2);
+# 1744 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t strlcpy_PF(char *dst, uint_farptr_t src, size_t siz);
+# 1760 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern int memcmp_PF(const void *, uint_farptr_t, size_t) __attribute__((__pure__));
+# 1779 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/pgmspace.h" 3
+extern size_t __strlen_P(const char *) __attribute__((__const__));
+__attribute__((__always_inline__)) static __inline__ size_t strlen_P(const char * s);
+static __inline__ size_t strlen_P(const char *s) {
+  return __builtin_constant_p(__builtin_strlen(s))
+     ? __builtin_strlen(s) : __strlen_P(s);
+}
+
+
+
+}
+# 29 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/interrupt.h" 1 3
+# 31 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/binary.h" 1
+# 33 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+
+
+
+# 35 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+extern "C"{
+
+
+void yield(void);
+# 121 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+typedef unsigned int word;
+
+
+
+typedef bool boolean;
+typedef uint8_t byte;
+
+void init(void);
+void initVariant(void);
+
+int atexit(void (*func)()) __attribute__((weak));
+
+void pinMode(uint8_t, uint8_t);
+void digitalWrite(uint8_t, uint8_t);
+int digitalRead(uint8_t);
+int analogRead(uint8_t);
+void analogReference(uint8_t mode);
+void analogWrite(uint8_t, int);
+
+unsigned long millis(void);
+unsigned long micros(void);
+void delay(unsigned long);
+void delayMicroseconds(unsigned int us);
+unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
+unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout);
+
+void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
+uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
+
+void attachInterrupt(uint8_t, void (*)(void), int mode);
+void detachInterrupt(uint8_t);
+
+void setup(void);
+void loop(void);
+# 163 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+extern const uint16_t 
+# 163 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 3
+                     __attribute__((__progmem__)) 
+# 163 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+                             port_to_mode_PGM[];
+extern const uint16_t 
+# 164 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 3
+                     __attribute__((__progmem__)) 
+# 164 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+                             port_to_input_PGM[];
+extern const uint16_t 
+# 165 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 3
+                     __attribute__((__progmem__)) 
+# 165 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+                             port_to_output_PGM[];
+
+extern const uint8_t 
+# 167 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 3
+                    __attribute__((__progmem__)) 
+# 167 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+                            digital_pin_to_port_PGM[];
+
+extern const uint8_t 
+# 169 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 3
+                    __attribute__((__progmem__)) 
+# 169 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+                            digital_pin_to_bit_mask_PGM[];
+extern const uint8_t 
+# 170 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 3
+                    __attribute__((__progmem__)) 
+# 170 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+                            digital_pin_to_timer_PGM[];
+# 226 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
+}
+
+
+
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WCharacter.h" 1
+# 23 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WCharacter.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/ctype.h" 1 3
+# 48 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/ctype.h" 3
+
+# 48 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/ctype.h" 3
+extern "C" {
+# 74 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/ctype.h" 3
+extern int isalnum(int __c) __attribute__((__const__));
+
+
+
+
+
+
+extern int isalpha(int __c) __attribute__((__const__));
+
+
+
+
+
+
+extern int isascii(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int isblank(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int iscntrl(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int isdigit(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int isgraph(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int islower(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int isprint(int __c) __attribute__((__const__));
+
+
+
+
+
+
+extern int ispunct(int __c) __attribute__((__const__));
+
+
+
+
+
+
+
+extern int isspace(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int isupper(int __c) __attribute__((__const__));
+
+
+
+
+
+
+extern int isxdigit(int __c) __attribute__((__const__));
+# 173 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/ctype.h" 3
+extern int toascii(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int tolower(int __c) __attribute__((__const__));
+
+
+
+
+
+extern int toupper(int __c) __attribute__((__const__));
+
+
+
+
+}
+# 24 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WCharacter.h" 2
+
+
+
+# 26 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WCharacter.h"
+inline boolean isAlphaNumeric(int c) __attribute__((always_inline));
+inline boolean isAlpha(int c) __attribute__((always_inline));
+inline boolean isAscii(int c) __attribute__((always_inline));
+inline boolean isWhitespace(int c) __attribute__((always_inline));
+inline boolean isControl(int c) __attribute__((always_inline));
+inline boolean isDigit(int c) __attribute__((always_inline));
+inline boolean isGraph(int c) __attribute__((always_inline));
+inline boolean isLowerCase(int c) __attribute__((always_inline));
+inline boolean isPrintable(int c) __attribute__((always_inline));
+inline boolean isPunct(int c) __attribute__((always_inline));
+inline boolean isSpace(int c) __attribute__((always_inline));
+inline boolean isUpperCase(int c) __attribute__((always_inline));
+inline boolean isHexadecimalDigit(int c) __attribute__((always_inline));
+inline int toAscii(int c) __attribute__((always_inline));
+inline int toLowerCase(int c) __attribute__((always_inline));
+inline int toUpperCase(int c)__attribute__((always_inline));
+
+
+
+
+inline boolean isAlphaNumeric(int c)
+{
+  return ( isalnum(c) == 0 ? false : true);
+}
+
+
+
+
+inline boolean isAlpha(int c)
+{
+  return ( isalpha(c) == 0 ? false : true);
+}
+
+
+
+
+inline boolean isAscii(int c)
+{
+  return ( isascii (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isWhitespace(int c)
+{
+  return ( isblank (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isControl(int c)
+{
+  return ( iscntrl (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isDigit(int c)
+{
+  return ( isdigit (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isGraph(int c)
+{
+  return ( isgraph (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isLowerCase(int c)
+{
+  return (islower (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isPrintable(int c)
+{
+  return ( isprint (c) == 0 ? false : true);
+}
+
+
+
+
+inline boolean isPunct(int c)
+{
+  return ( ispunct (c) == 0 ? false : true);
+}
+
+
+
+
+
+inline boolean isSpace(int c)
+{
+  return ( isspace (c) == 0 ? false : true);
+}
+
+
+
+inline boolean isUpperCase(int c)
+{
+  return ( isupper (c) == 0 ? false : true);
+}
+
+
+
+
+inline boolean isHexadecimalDigit(int c)
+{
+  return ( isxdigit (c) == 0 ? false : true);
+}
+
+
+
+
+inline int toAscii(int c)
+{
+  return toascii (c);
+}
+# 156 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WCharacter.h"
+inline int toLowerCase(int c)
+{
+  return tolower (c);
+}
+
+
+
+inline int toUpperCase(int c)
+{
+  return toupper (c);
+}
+# 231 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WString.h" 1
+# 37 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/WString.h"
+class __FlashStringHelper;
+
+
+
+
+class StringSumHelper;
+
+
+class String
+{
+
+
+
+ typedef void (String::*StringIfHelperType)() const;
+ void StringIfHelper() const {}
+
+public:
+
+
+
+
+
+ String(const char *cstr = "");
+ String(const String &str);
+ String(const __FlashStringHelper *str);
+
+ String(String &&rval);
+ String(StringSumHelper &&rval);
+
+ explicit String(char c);
+ explicit String(unsigned char, unsigned char base=10);
+ explicit String(int, unsigned char base=10);
+ explicit String(unsigned int, unsigned char base=10);
+ explicit String(long, unsigned char base=10);
+ explicit String(unsigned long, unsigned char base=10);
+ explicit String(float, unsigned char decimalPlaces=2);
+ explicit String(double, unsigned char decimalPlaces=2);
+ ~String(void);
+
+
+
+
+
+ unsigned char reserve(unsigned int size);
+ inline unsigned int length(void) const {return len;}
+
+
+
+
+ String & operator = (const String &rhs);
+ String & operator = (const char *cstr);
+ String & operator = (const __FlashStringHelper *str);
+
+ String & operator = (String &&rval);
+ String & operator = (StringSumHelper &&rval);
+
+
+
+
+
+
+
+ unsigned char concat(const String &str);
+ unsigned char concat(const char *cstr);
+ unsigned char concat(char c);
+ unsigned char concat(unsigned char c);
+ unsigned char concat(int num);
+ unsigned char concat(unsigned int num);
+ unsigned char concat(long num);
+ unsigned char concat(unsigned long num);
+ unsigned char concat(float num);
+ unsigned char concat(double num);
+ unsigned char concat(const __FlashStringHelper * str);
+
+
+
+ String & operator += (const String &rhs) {concat(rhs); return (*this);}
+ String & operator += (const char *cstr) {concat(cstr); return (*this);}
+ String & operator += (char c) {concat(c); return (*this);}
+ String & operator += (unsigned char num) {concat(num); return (*this);}
+ String & operator += (int num) {concat(num); return (*this);}
+ String & operator += (unsigned int num) {concat(num); return (*this);}
+ String & operator += (long num) {concat(num); return (*this);}
+ String & operator += (unsigned long num) {concat(num); return (*this);}
+ String & operator += (float num) {concat(num); return (*this);}
+ String & operator += (double num) {concat(num); return (*this);}
+ String & operator += (const __FlashStringHelper *str){concat(str); return (*this);}
+
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, const String &rhs);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, const char *cstr);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, char c);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, unsigned char num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, int num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, unsigned int num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, long num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, unsigned long num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, float num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, double num);
+ friend StringSumHelper & operator + (const StringSumHelper &lhs, const __FlashStringHelper *rhs);
+
+
+ operator StringIfHelperType() const { return buffer ? &String::StringIfHelper : 0; }
+ int compareTo(const String &s) const;
+ unsigned char equals(const String &s) const;
+ unsigned char equals(const char *cstr) const;
+ unsigned char operator == (const String &rhs) const {return equals(rhs);}
+ unsigned char operator == (const char *cstr) const {return equals(cstr);}
+ unsigned char operator != (const String &rhs) const {return !equals(rhs);}
+ unsigned char operator != (const char *cstr) const {return !equals(cstr);}
+ unsigned char operator < (const String &rhs) const;
+ unsigned char operator > (const String &rhs) const;
+ unsigned char operator <= (const String &rhs) const;
+ unsigned char operator >= (const String &rhs) const;
+ unsigned char equalsIgnoreCase(const String &s) const;
+ unsigned char startsWith( const String &prefix) const;
+ unsigned char startsWith(const String &prefix, unsigned int offset) const;
+ unsigned char endsWith(const String &suffix) const;
+
+
+ char charAt(unsigned int index) const;
+ void setCharAt(unsigned int index, char c);
+ char operator [] (unsigned int index) const;
+ char& operator [] (unsigned int index);
+ void getBytes(unsigned char *buf, unsigned int bufsize, unsigned int index=0) const;
+ void toCharArray(char *buf, unsigned int bufsize, unsigned int index=0) const
+  { getBytes((unsigned char *)buf, bufsize, index); }
+ const char* c_str() const { return buffer; }
+ char* begin() { return buffer; }
+ char* end() { return buffer + length(); }
+ const char* begin() const { return c_str(); }
+ const char* end() const { return c_str() + length(); }
+
+
+ int indexOf( char ch ) const;
+ int indexOf( char ch, unsigned int fromIndex ) const;
+ int indexOf( const String &str ) const;
+ int indexOf( const String &str, unsigned int fromIndex ) const;
+ int lastIndexOf( char ch ) const;
+ int lastIndexOf( char ch, unsigned int fromIndex ) const;
+ int lastIndexOf( const String &str ) const;
+ int lastIndexOf( const String &str, unsigned int fromIndex ) const;
+ String substring( unsigned int beginIndex ) const { return substring(beginIndex, len); };
+ String substring( unsigned int beginIndex, unsigned int endIndex ) const;
+
+
+ void replace(char find, char replace);
+ void replace(const String& find, const String& replace);
+ void remove(unsigned int index);
+ void remove(unsigned int index, unsigned int count);
+ void toLowerCase(void);
+ void toUpperCase(void);
+ void trim(void);
+
+
+ long toInt(void) const;
+ float toFloat(void) const;
+ double toDouble(void) const;
+
+protected:
+ char *buffer;
+ unsigned int capacity;
+ unsigned int len;
+protected:
+ void init(void);
+ void invalidate(void);
+ unsigned char changeBuffer(unsigned int maxStrLen);
+ unsigned char concat(const char *cstr, unsigned int length);
+
+
+ String & copy(const char *cstr, unsigned int length);
+ String & copy(const __FlashStringHelper *pstr, unsigned int length);
+
+ void move(String &rhs);
+
+};
+
+class StringSumHelper : public String
+{
+public:
+ StringSumHelper(const String &s) : String(s) {}
+ StringSumHelper(const char *p) : String(p) {}
+ StringSumHelper(char c) : String(c) {}
+ StringSumHelper(unsigned char num) : String(num) {}
+ StringSumHelper(int num) : String(num) {}
+ StringSumHelper(unsigned int num) : String(num) {}
+ StringSumHelper(long num) : String(num) {}
+ StringSumHelper(unsigned long num) : String(num) {}
+ StringSumHelper(float num) : String(num) {}
+ StringSumHelper(double num) : String(num) {}
+};
+# 232 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/HardwareSerial.h" 1
+# 29 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/HardwareSerial.h"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Stream.h" 1
+# 26 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Stream.h"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h" 1
+# 24 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 1 3
+# 45 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdarg.h" 1 3 4
+# 40 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdarg.h" 3 4
+
+# 40 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdarg.h" 3 4
+typedef __builtin_va_list __gnuc_va_list;
+# 98 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdarg.h" 3 4
+typedef __gnuc_va_list va_list;
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 2 3
+
+
+
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 51 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 2 3
+# 244 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+struct __file {
+ char *buf;
+ unsigned char unget;
+ uint8_t flags;
+# 263 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+ int size;
+ int len;
+ int (*put)(char, struct __file *);
+ int (*get)(struct __file *);
+ void *udata;
+};
+# 277 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+typedef struct __file FILE;
+# 399 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern "C" {
+
+
+
+
+
+
+
+extern struct __file *__iob[];
+# 419 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern FILE *fdevopen(int (*__put)(char, FILE*), int (*__get)(FILE*));
+# 436 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int fclose(FILE *__stream);
+# 610 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int vfprintf(FILE *__stream, const char *__fmt, va_list __ap);
+
+
+
+
+
+extern int vfprintf_P(FILE *__stream, const char *__fmt, va_list __ap);
+
+
+
+
+
+
+extern int fputc(int __c, FILE *__stream);
+
+
+
+
+extern int putc(int __c, FILE *__stream);
+
+
+extern int putchar(int __c);
+# 651 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int printf(const char *__fmt, ...);
+
+
+
+
+
+extern int printf_P(const char *__fmt, ...);
+
+
+
+
+
+
+
+extern int vprintf(const char *__fmt, va_list __ap);
+
+
+
+
+
+extern int sprintf(char *__s, const char *__fmt, ...);
+
+
+
+
+
+extern int sprintf_P(char *__s, const char *__fmt, ...);
+# 687 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int snprintf(char *__s, size_t __n, const char *__fmt, ...);
+
+
+
+
+
+extern int snprintf_P(char *__s, size_t __n, const char *__fmt, ...);
+
+
+
+
+
+extern int vsprintf(char *__s, const char *__fmt, va_list ap);
+
+
+
+
+
+extern int vsprintf_P(char *__s, const char *__fmt, va_list ap);
+# 715 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int vsnprintf(char *__s, size_t __n, const char *__fmt, va_list ap);
+
+
+
+
+
+extern int vsnprintf_P(char *__s, size_t __n, const char *__fmt, va_list ap);
+
+
+
+
+extern int fprintf(FILE *__stream, const char *__fmt, ...);
+
+
+
+
+
+extern int fprintf_P(FILE *__stream, const char *__fmt, ...);
+
+
+
+
+
+
+extern int fputs(const char *__str, FILE *__stream);
+
+
+
+
+extern int fputs_P(const char *__str, FILE *__stream);
+
+
+
+
+
+extern int puts(const char *__str);
+
+
+
+
+extern int puts_P(const char *__str);
+# 764 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern size_t fwrite(const void *__ptr, size_t __size, size_t __nmemb,
+         FILE *__stream);
+
+
+
+
+
+
+
+extern int fgetc(FILE *__stream);
+
+
+
+
+extern int getc(FILE *__stream);
+
+
+extern int getchar(void);
+# 812 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int ungetc(int __c, FILE *__stream);
+# 824 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern char *fgets(char *__str, int __size, FILE *__stream);
+
+
+
+
+
+
+extern char *gets(char *__str);
+# 842 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern size_t fread(void *__ptr, size_t __size, size_t __nmemb,
+        FILE *__stream);
+
+
+
+
+extern void clearerr(FILE *__stream);
+# 859 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int feof(FILE *__stream);
+# 870 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+extern int ferror(FILE *__stream);
+
+
+
+
+
+
+extern int vfscanf(FILE *__stream, const char *__fmt, va_list __ap);
+
+
+
+
+extern int vfscanf_P(FILE *__stream, const char *__fmt, va_list __ap);
+
+
+
+
+
+
+
+extern int fscanf(FILE *__stream, const char *__fmt, ...);
+
+
+
+
+extern int fscanf_P(FILE *__stream, const char *__fmt, ...);
+
+
+
+
+
+
+extern int scanf(const char *__fmt, ...);
+
+
+
+
+extern int scanf_P(const char *__fmt, ...);
+
+
+
+
+
+
+
+extern int vscanf(const char *__fmt, va_list __ap);
+
+
+
+
+
+
+
+extern int sscanf(const char *__buf, const char *__fmt, ...);
+
+
+
+
+extern int sscanf_P(const char *__buf, const char *__fmt, ...);
+# 940 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdio.h" 3
+static __inline__ int fflush(FILE *stream __attribute__((unused)))
+{
+ return 0;
+}
+
+
+
+
+
+
+__extension__ typedef long long fpos_t;
+extern int fgetpos(FILE *stream, fpos_t *pos);
+extern FILE *fopen(const char *path, const char *mode);
+extern FILE *freopen(const char *path, const char *mode, FILE *stream);
+extern FILE *fdopen(int, const char *);
+extern int fseek(FILE *stream, long offset, int whence);
+extern int fsetpos(FILE *stream, fpos_t *pos);
+extern long ftell(FILE *stream);
+extern int fileno(FILE *);
+extern void perror(const char *s);
+extern int remove(const char *pathname);
+extern int rename(const char *oldpath, const char *newpath);
+extern void rewind(FILE *stream);
+extern void setbuf(FILE *stream, char *buf);
+extern int setvbuf(FILE *stream, char *buf, int mode, size_t size);
+extern FILE *tmpfile(void);
+extern char *tmpnam (char *s);
+
+
+
+}
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h" 2
+
+
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Printable.h" 1
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Printable.h"
+
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Printable.h"
+class Print;
+
+
+
+
+
+
+
+class Printable
+{
+  public:
+    virtual size_t printTo(Print& p) const = 0;
+};
+# 28 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h" 2
+# 37 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h"
+class Print
+{
+  private:
+    int write_error;
+    size_t printNumber(unsigned long, uint8_t);
+    size_t printFloat(double, uint8_t);
+  protected:
+    void setWriteError(int err = 1) { write_error = err; }
+  public:
+    Print() : write_error(0) {}
+
+    int getWriteError() { return write_error; }
+    void clearWriteError() { setWriteError(0); }
+
+    virtual size_t write(uint8_t) = 0;
+    size_t write(const char *str) {
+      if (str == 
+# 53 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h" 3 4
+                __null
+# 53 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Print.h"
+                    ) return 0;
+      return write((const uint8_t *)str, strlen(str));
+    }
+    virtual size_t write(const uint8_t *buffer, size_t size);
+    size_t write(const char *buffer, size_t size) {
+      return write((const uint8_t *)buffer, size);
+    }
+
+
+
+    virtual int availableForWrite() { return 0; }
+
+    size_t print(const __FlashStringHelper *);
+    size_t print(const String &);
+    size_t print(const char[]);
+    size_t print(char);
+    size_t print(unsigned char, int = 10);
+    size_t print(int, int = 10);
+    size_t print(unsigned int, int = 10);
+    size_t print(long, int = 10);
+    size_t print(unsigned long, int = 10);
+    size_t print(double, int = 2);
+    size_t print(const Printable&);
+
+    size_t println(const __FlashStringHelper *);
+    size_t println(const String &s);
+    size_t println(const char[]);
+    size_t println(char);
+    size_t println(unsigned char, int = 10);
+    size_t println(int, int = 10);
+    size_t println(unsigned int, int = 10);
+    size_t println(long, int = 10);
+    size_t println(unsigned long, int = 10);
+    size_t println(double, int = 2);
+    size_t println(const Printable&);
+    size_t println(void);
+
+    virtual void flush() { }
+};
+# 27 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Stream.h" 2
+# 41 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Stream.h"
+enum LookaheadMode{
+    SKIP_ALL,
+    SKIP_NONE,
+    SKIP_WHITESPACE
+};
+
+
+
+class Stream : public Print
+{
+  protected:
+    unsigned long _timeout;
+    unsigned long _startMillis;
+    int timedRead();
+    int timedPeek();
+    int peekNextDigit(LookaheadMode lookahead, bool detectDecimal);
+
+  public:
+    virtual int available() = 0;
+    virtual int read() = 0;
+    virtual int peek() = 0;
+
+    Stream() {_timeout=1000;}
+
+
+
+  void setTimeout(unsigned long timeout);
+  unsigned long getTimeout(void) { return _timeout; }
+
+  bool find(char *target);
+  bool find(uint8_t *target) { return find ((char *)target); }
+
+
+  bool find(char *target, size_t length);
+  bool find(uint8_t *target, size_t length) { return find ((char *)target, length); }
+
+
+  bool find(char target) { return find (&target, 1); }
+
+  bool findUntil(char *target, char *terminator);
+  bool findUntil(uint8_t *target, char *terminator) { return findUntil((char *)target, terminator); }
+
+  bool findUntil(char *target, size_t targetLen, char *terminate, size_t termLen);
+  bool findUntil(uint8_t *target, size_t targetLen, char *terminate, size_t termLen) {return findUntil((char *)target, targetLen, terminate, termLen); }
+
+  long parseInt(LookaheadMode lookahead = SKIP_ALL, char ignore = '\x01');
+
+
+
+
+
+
+  float parseFloat(LookaheadMode lookahead = SKIP_ALL, char ignore = '\x01');
+
+
+  size_t readBytes( char *buffer, size_t length);
+  size_t readBytes( uint8_t *buffer, size_t length) { return readBytes((char *)buffer, length); }
+
+
+
+  size_t readBytesUntil( char terminator, char *buffer, size_t length);
+  size_t readBytesUntil( char terminator, uint8_t *buffer, size_t length) { return readBytesUntil(terminator, (char *)buffer, length); }
+
+
+
+
+  String readString();
+  String readStringUntil(char terminator);
+
+  protected:
+  long parseInt(char ignore) { return parseInt(SKIP_ALL, ignore); }
+  float parseFloat(char ignore) { return parseFloat(SKIP_ALL, ignore); }
+
+
+
+
+  struct MultiTarget {
+    const char *str;
+    size_t len;
+    size_t index;
+  };
+
+
+
+  int findMulti(struct MultiTarget *targets, int tCount);
+};
+# 30 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/HardwareSerial.h" 2
+# 59 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/HardwareSerial.h"
+typedef uint8_t tx_buffer_index_t;
+
+
+
+
+typedef uint8_t rx_buffer_index_t;
+# 93 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/HardwareSerial.h"
+class HardwareSerial : public Stream
+{
+  protected:
+    volatile uint8_t * const _ubrrh;
+    volatile uint8_t * const _ubrrl;
+    volatile uint8_t * const _ucsra;
+    volatile uint8_t * const _ucsrb;
+    volatile uint8_t * const _ucsrc;
+    volatile uint8_t * const _udr;
+
+    bool _written;
+
+    volatile rx_buffer_index_t _rx_buffer_head;
+    volatile rx_buffer_index_t _rx_buffer_tail;
+    volatile tx_buffer_index_t _tx_buffer_head;
+    volatile tx_buffer_index_t _tx_buffer_tail;
+
+
+
+
+    unsigned char _rx_buffer[64];
+    unsigned char _tx_buffer[64];
+
+  public:
+    inline HardwareSerial(
+      volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
+      volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
+      volatile uint8_t *ucsrc, volatile uint8_t *udr);
+    void begin(unsigned long baud) { begin(baud, 0x06); }
+    void begin(unsigned long, uint8_t);
+    void end();
+    virtual int available(void);
+    virtual int peek(void);
+    virtual int read(void);
+    virtual int availableForWrite(void);
+    virtual void flush(void);
+    virtual size_t write(uint8_t);
+    inline size_t write(unsigned long n) { return write((uint8_t)n); }
+    inline size_t write(long n) { return write((uint8_t)n); }
+    inline size_t write(unsigned int n) { return write((uint8_t)n); }
+    inline size_t write(int n) { return write((uint8_t)n); }
+    using Print::write;
+    operator bool() { return true; }
+
+
+    inline void _rx_complete_irq(void);
+    void _tx_udr_empty_irq(void);
+};
+
+
+  extern HardwareSerial Serial;
+# 159 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/HardwareSerial.h"
+extern void serialEventRun(void) __attribute__((weak));
+# 233 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/USBAPI.h" 1
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/USBAPI.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/eeprom.h" 1 3
+# 50 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/eeprom.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 149 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+
+# 149 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef int ptrdiff_t;
+# 426 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 51 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/eeprom.h" 2 3
+# 92 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/eeprom.h" 3
+extern "C" {
+# 139 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/eeprom.h" 3
+uint8_t eeprom_read_byte (const uint8_t *__p) __attribute__((__pure__));
+
+
+
+
+uint16_t eeprom_read_word (const uint16_t *__p) __attribute__((__pure__));
+
+
+
+
+uint32_t eeprom_read_dword (const uint32_t *__p) __attribute__((__pure__));
+
+
+
+
+float eeprom_read_float (const float *__p) __attribute__((__pure__));
+
+
+
+
+
+void eeprom_read_block (void *__dst, const void *__src, size_t __n);
+
+
+
+
+
+void eeprom_write_byte (uint8_t *__p, uint8_t __value);
+
+
+
+
+void eeprom_write_word (uint16_t *__p, uint16_t __value);
+
+
+
+
+void eeprom_write_dword (uint32_t *__p, uint32_t __value);
+
+
+
+
+void eeprom_write_float (float *__p, float __value);
+
+
+
+
+
+void eeprom_write_block (const void *__src, void *__dst, size_t __n);
+
+
+
+
+
+void eeprom_update_byte (uint8_t *__p, uint8_t __value);
+
+
+
+
+void eeprom_update_word (uint16_t *__p, uint16_t __value);
+
+
+
+
+void eeprom_update_dword (uint32_t *__p, uint32_t __value);
+
+
+
+
+void eeprom_update_float (float *__p, float __value);
+
+
+
+
+
+void eeprom_update_block (const void *__src, void *__dst, size_t __n);
+# 243 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/avr/eeprom.h" 3
+}
+# 26 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/USBAPI.h" 2
+
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 1 3
+# 45 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay_basic.h" 1 3
+# 40 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay_basic.h" 3
+static __inline__ void _delay_loop_1(uint8_t __count) __attribute__((__always_inline__));
+static __inline__ void _delay_loop_2(uint16_t __count) __attribute__((__always_inline__));
+# 80 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay_basic.h" 3
+void
+_delay_loop_1(uint8_t __count)
+{
+ __asm__ volatile (
+  "1: dec %0" "\n\t"
+  "brne 1b"
+  : "=r" (__count)
+  : "0" (__count)
+ );
+}
+# 102 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay_basic.h" 3
+void
+_delay_loop_2(uint16_t __count)
+{
+ __asm__ volatile (
+  "1: sbiw %0,1" "\n\t"
+  "brne 1b"
+  : "=w" (__count)
+  : "0" (__count)
+ );
+}
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 2 3
+# 86 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
+# 165 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+void
+_delay_ms(double __ms)
+{
+ double __tmp ;
+
+
+
+ uint32_t __ticks_dc;
+ extern void __builtin_avr_delay_cycles(unsigned long);
+ __tmp = ((
+# 174 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h"
+          16000000L
+# 174 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+               ) / 1e3) * __ms;
+# 184 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+  __ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+
+
+ __builtin_avr_delay_cycles(__ticks_dc);
+# 210 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+}
+# 254 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+void
+_delay_us(double __us)
+{
+ double __tmp ;
+
+
+
+ uint32_t __ticks_dc;
+ extern void __builtin_avr_delay_cycles(unsigned long);
+ __tmp = ((
+# 263 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h"
+          16000000L
+# 263 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+               ) / 1e6) * __us;
+# 273 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+  __ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+
+
+ __builtin_avr_delay_cycles(__ticks_dc);
+# 299 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/util/delay.h" 3
+}
+# 28 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/USBAPI.h" 2
+
+
+# 29 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/USBAPI.h"
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 1
+# 34 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/USBAPI.h" 2
+# 234 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+
+
+
+
+uint16_t makeWord(uint16_t w);
+uint16_t makeWord(byte h, byte l);
+
+
+
+unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
+unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
+
+void tone(uint8_t _pin, unsigned int frequency, unsigned long duration = 0);
+void noTone(uint8_t _pin);
+
+
+long random(long);
+long random(long, long);
+void randomSeed(unsigned long);
+long map(long, long, long, long, long);
+
+
+
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/variants/standard/pins_arduino.h" 1
+# 43 "/home/whistleblower/.platformio/packages/framework-arduino-avr/variants/standard/pins_arduino.h"
+static const uint8_t SS = (10);
+static const uint8_t MOSI = (11);
+static const uint8_t MISO = (12);
+static const uint8_t SCK = (13);
+
+
+
+
+static const uint8_t SDA = (18);
+static const uint8_t SCL = (19);
+# 65 "/home/whistleblower/.platformio/packages/framework-arduino-avr/variants/standard/pins_arduino.h"
+static const uint8_t A0 = (14);
+static const uint8_t A1 = (15);
+static const uint8_t A2 = (16);
+static const uint8_t A3 = (17);
+static const uint8_t A4 = (18);
+static const uint8_t A5 = (19);
+static const uint8_t A6 = (20);
+static const uint8_t A7 = (21);
+# 258 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h" 2
+# 22 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.h" 1
+# 52 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.h"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Client.h" 1
+# 24 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Client.h"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/IPAddress.h" 1
+# 29 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/IPAddress.h"
+class IPAddress : public Printable {
+private:
+    union {
+ uint8_t bytes[4];
+ uint32_t dword;
+    } _address;
+
+
+
+
+
+    uint8_t* raw_address() { return _address.bytes; };
+
+public:
+
+    IPAddress();
+    IPAddress(uint8_t first_octet, uint8_t second_octet, uint8_t third_octet, uint8_t fourth_octet);
+    IPAddress(uint32_t address);
+    IPAddress(const uint8_t *address);
+
+    bool fromString(const char *address);
+    bool fromString(const String &address) { return fromString(address.c_str()); }
+
+
+
+    operator uint32_t() const { return _address.dword; };
+    bool operator==(const IPAddress& addr) const { return _address.dword == addr._address.dword; };
+    bool operator==(const uint8_t* addr) const;
+
+
+    uint8_t operator[](int index) const { return _address.bytes[index]; };
+    uint8_t& operator[](int index) { return _address.bytes[index]; };
+
+
+    IPAddress& operator=(const uint8_t *address);
+    IPAddress& operator=(uint32_t address);
+
+    virtual size_t printTo(Print& p) const;
+
+    friend class EthernetClass;
+    friend class UDP;
+    friend class Client;
+    friend class Server;
+    friend class DhcpClass;
+    friend class DNSClient;
+};
+
+const IPAddress INADDR_NONE(0,0,0,0);
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Client.h" 2
+
+class Client : public Stream {
+
+public:
+  virtual int connect(IPAddress ip, uint16_t port) =0;
+  virtual int connect(const char *host, uint16_t port) =0;
+  virtual size_t write(uint8_t) =0;
+  virtual size_t write(const uint8_t *buf, size_t size) =0;
+  virtual int available() = 0;
+  virtual int read() = 0;
+  virtual int read(uint8_t *buf, size_t size) = 0;
+  virtual int peek() = 0;
+  virtual void flush() = 0;
+  virtual void stop() = 0;
+  virtual uint8_t connected() = 0;
+  virtual operator bool() = 0;
+protected:
+  uint8_t* rawIPAddress(IPAddress& addr) { return addr.raw_address(); };
+};
+# 53 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.h" 2
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Server.h" 1
+# 25 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Server.h"
+class Server : public Print {
+public:
+  virtual void begin() =0;
+};
+# 54 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.h" 2
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Udp.h" 1
+# 38 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Udp.h"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Stream.h" 1
+# 39 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Udp.h" 2
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/IPAddress.h" 1
+# 40 "/home/whistleblower/.platformio/packages/framework-arduino-avr/cores/arduino/Udp.h" 2
+
+class UDP : public Stream {
+
+public:
+  virtual uint8_t begin(uint16_t) =0;
+  virtual uint8_t beginMulticast(IPAddress, uint16_t) { return 0; }
+  virtual void stop() =0;
+
+
+
+
+
+  virtual int beginPacket(IPAddress ip, uint16_t port) =0;
+
+
+  virtual int beginPacket(const char *host, uint16_t port) =0;
+
+
+  virtual int endPacket() =0;
+
+  virtual size_t write(uint8_t) =0;
+
+  virtual size_t write(const uint8_t *buffer, size_t size) =0;
+
+
+
+  virtual int parsePacket() =0;
+
+  virtual int available() =0;
+
+  virtual int read() =0;
+
+
+  virtual int read(unsigned char* buffer, size_t len) =0;
+
+
+  virtual int read(char* buffer, size_t len) =0;
+
+  virtual int peek() =0;
+  virtual void flush() =0;
+
+
+  virtual IPAddress remoteIP() =0;
+
+  virtual uint16_t remotePort() =0;
+protected:
+  uint8_t* rawIPAddress(IPAddress& addr) { return addr.raw_address(); };
+};
+# 55 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.h" 2
+
+enum EthernetLinkStatus {
+ Unknown,
+ LinkON,
+ LinkOFF
+};
+
+enum EthernetHardwareStatus {
+ EthernetNoHardware,
+ EthernetW5100,
+ EthernetW5200,
+ EthernetW5500
+};
+
+class EthernetUDP;
+class EthernetClient;
+class EthernetServer;
+class DhcpClass;
+
+class EthernetClass {
+private:
+ static IPAddress _dnsServerAddress;
+ static DhcpClass* _dhcp;
+public:
+
+
+
+ static int begin(uint8_t *mac, unsigned long timeout = 60000, unsigned long responseTimeout = 4000);
+ static int maintain();
+ static EthernetLinkStatus linkStatus();
+ static EthernetHardwareStatus hardwareStatus();
+
+
+ static void begin(uint8_t *mac, IPAddress ip);
+ static void begin(uint8_t *mac, IPAddress ip, IPAddress dns);
+ static void begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway);
+ static void begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway, IPAddress subnet);
+ static void init(uint8_t sspin = 10);
+
+ static void MACAddress(uint8_t *mac_address);
+ static IPAddress localIP();
+ static IPAddress subnetMask();
+ static IPAddress gatewayIP();
+ static IPAddress dnsServerIP() { return _dnsServerAddress; }
+
+ void setMACAddress(const uint8_t *mac_address);
+ void setLocalIP(const IPAddress local_ip);
+ void setSubnetMask(const IPAddress subnet);
+ void setGatewayIP(const IPAddress gateway);
+ void setDnsServerIP(const IPAddress dns_server) { _dnsServerAddress = dns_server; }
+ void setRetransmissionTimeout(uint16_t milliseconds);
+ void setRetransmissionCount(uint8_t num);
+
+ friend class EthernetClient;
+ friend class EthernetServer;
+ friend class EthernetUDP;
+private:
+
+ static uint8_t socketBegin(uint8_t protocol, uint16_t port);
+ static uint8_t socketBeginMulticast(uint8_t protocol, IPAddress ip,uint16_t port);
+ static uint8_t socketStatus(uint8_t s);
+
+ static void socketClose(uint8_t s);
+
+ static void socketConnect(uint8_t s, uint8_t * addr, uint16_t port);
+
+ static void socketDisconnect(uint8_t s);
+
+ static uint8_t socketListen(uint8_t s);
+
+ static uint16_t socketSend(uint8_t s, const uint8_t * buf, uint16_t len);
+ static uint16_t socketSendAvailable(uint8_t s);
+
+ static int socketRecv(uint8_t s, uint8_t * buf, int16_t len);
+ static uint16_t socketRecvAvailable(uint8_t s);
+ static uint8_t socketPeek(uint8_t s);
+
+
+
+ static bool socketStartUDP(uint8_t s, uint8_t* addr, uint16_t port);
+
+
+
+ static uint16_t socketBufferData(uint8_t s, uint16_t offset, const uint8_t* buf, uint16_t len);
+
+
+
+ static bool socketSendUDP(uint8_t s);
+
+ static void socketPortRand(uint16_t n);
+};
+
+extern EthernetClass Ethernet;
+
+
+
+
+class EthernetUDP : public UDP {
+private:
+ uint16_t _port;
+ IPAddress _remoteIP;
+ uint16_t _remotePort;
+ uint16_t _offset;
+
+protected:
+ uint8_t sockindex;
+ uint16_t _remaining;
+
+public:
+ EthernetUDP() : sockindex(4) {}
+ virtual uint8_t begin(uint16_t);
+ virtual uint8_t beginMulticast(IPAddress, uint16_t);
+ virtual void stop();
+
+
+
+
+
+ virtual int beginPacket(IPAddress ip, uint16_t port);
+
+
+ virtual int beginPacket(const char *host, uint16_t port);
+
+
+ virtual int endPacket();
+
+ virtual size_t write(uint8_t);
+
+ virtual size_t write(const uint8_t *buffer, size_t size);
+
+ using Print::write;
+
+
+
+ virtual int parsePacket();
+
+ virtual int available();
+
+ virtual int read();
+
+
+ virtual int read(unsigned char* buffer, size_t len);
+
+
+ virtual int read(char* buffer, size_t len) { return read((unsigned char*)buffer, len); };
+
+ virtual int peek();
+ virtual void flush();
+
+
+ virtual IPAddress remoteIP() { return _remoteIP; };
+
+ virtual uint16_t remotePort() { return _remotePort; };
+ virtual uint16_t localPort() { return _port; }
+};
+
+
+
+
+class EthernetClient : public Client {
+public:
+ EthernetClient() : sockindex(4), _timeout(1000) { }
+ EthernetClient(uint8_t s) : sockindex(s), _timeout(1000) { }
+
+ uint8_t status();
+ virtual int connect(IPAddress ip, uint16_t port);
+ virtual int connect(const char *host, uint16_t port);
+ virtual int availableForWrite(void);
+ virtual size_t write(uint8_t);
+ virtual size_t write(const uint8_t *buf, size_t size);
+ virtual int available();
+ virtual int read();
+ virtual int read(uint8_t *buf, size_t size);
+ virtual int peek();
+ virtual void flush();
+ virtual void stop();
+ virtual uint8_t connected();
+ virtual operator bool() { return sockindex < 4; }
+ virtual bool operator==(const bool value) { return bool() == value; }
+ virtual bool operator!=(const bool value) { return bool() != value; }
+ virtual bool operator==(const EthernetClient&);
+ virtual bool operator!=(const EthernetClient& rhs) { return !this->operator==(rhs); }
+ uint8_t getSocketNumber() const { return sockindex; }
+ virtual uint16_t localPort();
+ virtual IPAddress remoteIP();
+ virtual uint16_t remotePort();
+ virtual void setConnectionTimeout(uint16_t timeout) { _timeout = timeout; }
+
+ friend class EthernetServer;
+
+ using Print::write;
+
+private:
+ uint8_t sockindex;
+ uint16_t _timeout;
+};
+
+
+class EthernetServer : public Server {
+private:
+ uint16_t _port;
+public:
+ EthernetServer(uint16_t port) : _port(port) { }
+ EthernetClient available();
+ EthernetClient accept();
+ virtual void begin();
+ virtual size_t write(uint8_t);
+ virtual size_t write(const uint8_t *buf, size_t size);
+ virtual operator bool();
+ using Print::write;
+
+
+
+ static uint16_t server_port[4];
+};
+
+
+class DhcpClass {
+private:
+ uint32_t _dhcpInitialTransactionId;
+ uint32_t _dhcpTransactionId;
+ uint8_t _dhcpMacAddr[6];
+
+
+
+
+
+
+
+ uint8_t _dhcpLocalIp[4];
+ uint8_t _dhcpSubnetMask[4];
+ uint8_t _dhcpGatewayIp[4];
+ uint8_t _dhcpDhcpServerIp[4];
+ uint8_t _dhcpDnsServerIp[4];
+
+ uint32_t _dhcpLeaseTime;
+ uint32_t _dhcpT1, _dhcpT2;
+ uint32_t _renewInSec;
+ uint32_t _rebindInSec;
+ unsigned long _timeout;
+ unsigned long _responseTimeout;
+ unsigned long _lastCheckLeaseMillis;
+ uint8_t _dhcp_state;
+ EthernetUDP _dhcpUdpSocket;
+
+ int request_DHCP_lease();
+ void reset_DHCP_lease();
+ void presend_DHCP();
+ void send_DHCP_MESSAGE(uint8_t, uint16_t);
+ void printByte(char *, uint8_t);
+
+ uint8_t parseDHCPResponse(unsigned long responseTimeout, uint32_t& transactionId);
+public:
+ IPAddress getLocalIp();
+ IPAddress getSubnetMask();
+ IPAddress getGatewayIp();
+ IPAddress getDhcpServerIp();
+ IPAddress getDnsServerIp();
+
+ int beginWithDHCP(uint8_t *, unsigned long timeout = 60000, unsigned long responseTimeout = 4000);
+ int checkLease();
+};
+# 23 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 1
+# 18 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+# 1 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 1
+# 72 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+class SPISettings {
+public:
+  SPISettings(uint32_t clock, uint8_t bitOrder, uint8_t dataMode) {
+    if (__builtin_constant_p(clock)) {
+      init_AlwaysInline(clock, bitOrder, dataMode);
+    } else {
+      init_MightInline(clock, bitOrder, dataMode);
+    }
+  }
+  SPISettings() {
+    init_AlwaysInline(4000000, 1, 0x00);
+  }
+private:
+  void init_MightInline(uint32_t clock, uint8_t bitOrder, uint8_t dataMode) {
+    init_AlwaysInline(clock, bitOrder, dataMode);
+  }
+  void init_AlwaysInline(uint32_t clock, uint8_t bitOrder, uint8_t dataMode)
+    __attribute__((__always_inline__)) {
+# 107 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+    uint8_t clockDiv;
+
+
+
+
+
+    if (__builtin_constant_p(clock)) {
+      if (clock >= 16000000L / 2) {
+        clockDiv = 0;
+      } else if (clock >= 16000000L / 4) {
+        clockDiv = 1;
+      } else if (clock >= 16000000L / 8) {
+        clockDiv = 2;
+      } else if (clock >= 16000000L / 16) {
+        clockDiv = 3;
+      } else if (clock >= 16000000L / 32) {
+        clockDiv = 4;
+      } else if (clock >= 16000000L / 64) {
+        clockDiv = 5;
+      } else {
+        clockDiv = 6;
+      }
+    } else {
+      uint32_t clockSetting = 16000000L / 2;
+      clockDiv = 0;
+      while (clockDiv < 6 && clock < clockSetting) {
+        clockSetting /= 2;
+        clockDiv++;
+      }
+    }
+
+
+    if (clockDiv == 6)
+    clockDiv = 7;
+
+
+    clockDiv ^= 0x1;
+
+
+    spcr = 
+# 146 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+          (1 << (6)) 
+# 146 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   | 
+# 146 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                     (1 << (4)) 
+# 146 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                               | ((bitOrder == 0) ? 
+# 146 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                                                           (1 << (5)) 
+# 146 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                                                     : 0) |
+      (dataMode & 0x0C) | ((clockDiv >> 1) & 0x03);
+    spsr = clockDiv & 0x01;
+  }
+  uint8_t spcr;
+  uint8_t spsr;
+  friend class SPIClass;
+};
+
+
+class SPIClass {
+public:
+
+  static void begin();
+
+
+
+
+
+
+  static void usingInterrupt(uint8_t interruptNumber);
+
+  static void notUsingInterrupt(uint8_t interruptNumber);
+# 178 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+  inline static void beginTransaction(SPISettings settings) {
+    if (interruptMode > 0) {
+      uint8_t sreg = 
+# 180 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                    (*(volatile uint8_t *)((0x3F) + 0x20))
+# 180 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                        ;
+      
+# 181 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     __asm__ __volatile__ ("cli" ::: "memory")
+# 181 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   ;
+
+
+      if (interruptMode == 1) {
+        interruptSave = 
+# 185 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                       (*(volatile uint8_t *)((0x1D) + 0x20))
+# 185 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                    ;
+        
+# 186 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+       (*(volatile uint8_t *)((0x1D) + 0x20)) 
+# 186 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                     &= ~interruptMask;
+        
+# 187 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+       (*(volatile uint8_t *)((0x3F) + 0x20)) 
+# 187 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+            = sreg;
+      } else
+
+      {
+        interruptSave = sreg;
+      }
+    }
+# 203 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+    
+# 203 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 203 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = settings.spcr;
+    
+# 204 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 204 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = settings.spsr;
+  }
+
+
+  inline static uint8_t transfer(uint8_t data) {
+    
+# 209 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 209 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = data;
+
+
+
+
+
+
+    asm volatile("nop");
+    while (!(
+# 217 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+            (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 217 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                 & 
+# 217 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                   (1 << (7))
+# 217 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                            )) ;
+    return 
+# 218 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+          (*(volatile uint8_t *)((0x2E) + 0x20))
+# 218 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+              ;
+  }
+  inline static uint16_t transfer16(uint16_t data) {
+    union { uint16_t val; struct { uint8_t lsb; uint8_t msb; }; } in, out;
+    in.val = data;
+    if (!(
+# 223 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+         (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 223 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+              & 
+# 223 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                (1 << (5))
+# 223 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                         )) {
+      
+# 224 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 224 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+          = in.msb;
+      asm volatile("nop");
+      while (!(
+# 226 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+              (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 226 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   & 
+# 226 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                     (1 << (7))
+# 226 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                              )) ;
+      out.msb = 
+# 227 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+               (*(volatile uint8_t *)((0x2E) + 0x20))
+# 227 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   ;
+      
+# 228 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 228 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+          = in.lsb;
+      asm volatile("nop");
+      while (!(
+# 230 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+              (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 230 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   & 
+# 230 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                     (1 << (7))
+# 230 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                              )) ;
+      out.lsb = 
+# 231 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+               (*(volatile uint8_t *)((0x2E) + 0x20))
+# 231 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   ;
+    } else {
+      
+# 233 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 233 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+          = in.lsb;
+      asm volatile("nop");
+      while (!(
+# 235 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+              (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 235 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   & 
+# 235 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                     (1 << (7))
+# 235 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                              )) ;
+      out.lsb = 
+# 236 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+               (*(volatile uint8_t *)((0x2E) + 0x20))
+# 236 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   ;
+      
+# 237 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 237 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+          = in.msb;
+      asm volatile("nop");
+      while (!(
+# 239 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+              (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 239 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   & 
+# 239 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                     (1 << (7))
+# 239 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                              )) ;
+      out.msb = 
+# 240 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+               (*(volatile uint8_t *)((0x2E) + 0x20))
+# 240 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   ;
+    }
+    return out.val;
+  }
+  inline static void transfer(void *buf, size_t count) {
+    if (count == 0) return;
+    uint8_t *p = (uint8_t *)buf;
+    
+# 247 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 247 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = *p;
+    while (--count > 0) {
+      uint8_t out = *(p + 1);
+      while (!(
+# 250 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+              (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 250 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   & 
+# 250 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                     (1 << (7))
+# 250 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                              )) ;
+      uint8_t in = 
+# 251 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                  (*(volatile uint8_t *)((0x2E) + 0x20))
+# 251 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                      ;
+      
+# 252 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     (*(volatile uint8_t *)((0x2E) + 0x20)) 
+# 252 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+          = out;
+      *p++ = in;
+    }
+    while (!(
+# 255 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+            (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 255 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                 & 
+# 255 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                   (1 << (7))
+# 255 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                            )) ;
+    *p = 
+# 256 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+        (*(volatile uint8_t *)((0x2E) + 0x20))
+# 256 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+            ;
+  }
+
+
+  inline static void endTransaction(void) {
+# 269 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+    if (interruptMode > 0) {
+
+      uint8_t sreg = 
+# 271 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                    (*(volatile uint8_t *)((0x3F) + 0x20))
+# 271 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                        ;
+
+      
+# 273 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+     __asm__ __volatile__ ("cli" ::: "memory")
+# 273 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                   ;
+
+      if (interruptMode == 1) {
+        
+# 276 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+       (*(volatile uint8_t *)((0x1D) + 0x20)) 
+# 276 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                     = interruptSave;
+        
+# 277 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+       (*(volatile uint8_t *)((0x3F) + 0x20)) 
+# 277 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+            = sreg;
+      } else
+
+      {
+        
+# 281 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+       (*(volatile uint8_t *)((0x3F) + 0x20)) 
+# 281 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+            = interruptSave;
+      }
+    }
+  }
+
+
+  static void end();
+
+
+
+  inline static void setBitOrder(uint8_t bitOrder) {
+    if (bitOrder == 0) 
+# 292 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                             (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 292 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                  |= 
+# 292 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                                     (1 << (5))
+# 292 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                              ;
+    else 
+# 293 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+        (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 293 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+             &= ~(
+# 293 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                  (1 << (5))
+# 293 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                           );
+  }
+
+
+  inline static void setDataMode(uint8_t dataMode) {
+    
+# 298 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 298 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = (
+# 298 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+           (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 298 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                & ~0x0C) | dataMode;
+  }
+
+
+  inline static void setClockDivider(uint8_t clockDiv) {
+    
+# 303 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 303 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = (
+# 303 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+           (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 303 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                & ~0x03) | (clockDiv & 0x03);
+    
+# 304 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+   (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 304 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+        = (
+# 304 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+           (*(volatile uint8_t *)((0x2D) + 0x20)) 
+# 304 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                & ~0x01) | ((clockDiv >> 2) & 0x01);
+  }
+
+
+
+  inline static void attachInterrupt() { 
+# 309 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                                        (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 309 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                             |= 
+# 309 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                                                (1 << (7))
+# 309 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                                         ; }
+  inline static void detachInterrupt() { 
+# 310 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                                        (*(volatile uint8_t *)((0x2C) + 0x20)) 
+# 310 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                             &= ~
+# 310 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h" 3
+                                                 (1 << (7))
+# 310 "/home/whistleblower/.platformio/packages/framework-arduino-avr/libraries/SPI/src/SPI.h"
+                                                          ; }
+
+private:
+  static uint8_t initialized;
+  static uint8_t interruptMode;
+  static uint8_t interruptMask;
+  static uint8_t interruptSave;
+
+
+
+};
+
+extern SPIClass SPI;
+# 19 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 2
+# 52 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+typedef uint8_t SOCKET;
+
+class SnMR {
+public:
+  static const uint8_t CLOSE = 0x00;
+  static const uint8_t TCP = 0x21;
+  static const uint8_t UDP = 0x02;
+  static const uint8_t IPRAW = 0x03;
+  static const uint8_t MACRAW = 0x04;
+  static const uint8_t PPPOE = 0x05;
+  static const uint8_t ND = 0x20;
+  static const uint8_t MULTI = 0x80;
+};
+
+enum SockCMD {
+  Sock_OPEN = 0x01,
+  Sock_LISTEN = 0x02,
+  Sock_CONNECT = 0x04,
+  Sock_DISCON = 0x08,
+  Sock_CLOSE = 0x10,
+  Sock_SEND = 0x20,
+  Sock_SEND_MAC = 0x21,
+  Sock_SEND_KEEP = 0x22,
+  Sock_RECV = 0x40
+};
+
+class SnIR {
+public:
+  static const uint8_t SEND_OK = 0x10;
+  static const uint8_t TIMEOUT = 0x08;
+  static const uint8_t RECV = 0x04;
+  static const uint8_t DISCON = 0x02;
+  static const uint8_t CON = 0x01;
+};
+
+class SnSR {
+public:
+  static const uint8_t CLOSED = 0x00;
+  static const uint8_t INIT = 0x13;
+  static const uint8_t LISTEN = 0x14;
+  static const uint8_t SYNSENT = 0x15;
+  static const uint8_t SYNRECV = 0x16;
+  static const uint8_t ESTABLISHED = 0x17;
+  static const uint8_t FIN_WAIT = 0x18;
+  static const uint8_t CLOSING = 0x1A;
+  static const uint8_t TIME_WAIT = 0x1B;
+  static const uint8_t CLOSE_WAIT = 0x1C;
+  static const uint8_t LAST_ACK = 0x1D;
+  static const uint8_t UDP = 0x22;
+  static const uint8_t IPRAW = 0x32;
+  static const uint8_t MACRAW = 0x42;
+  static const uint8_t PPPOE = 0x5F;
+};
+
+class IPPROTO {
+public:
+  static const uint8_t IP = 0;
+  static const uint8_t ICMP = 1;
+  static const uint8_t IGMP = 2;
+  static const uint8_t GGP = 3;
+  static const uint8_t TCP = 6;
+  static const uint8_t PUP = 12;
+  static const uint8_t UDP = 17;
+  static const uint8_t IDP = 22;
+  static const uint8_t ND = 77;
+  static const uint8_t RAW = 255;
+};
+
+enum W5100Linkstatus {
+  UNKNOWN,
+  LINK_ON,
+  LINK_OFF
+};
+
+class W5100Class {
+
+public:
+  static uint8_t init(void);
+
+  inline void setGatewayIp(const uint8_t * addr) { writeGAR(addr); }
+  inline void getGatewayIp(uint8_t * addr) { readGAR(addr); }
+
+  inline void setSubnetMask(const uint8_t * addr) { writeSUBR(addr); }
+  inline void getSubnetMask(uint8_t * addr) { readSUBR(addr); }
+
+  inline void setMACAddress(const uint8_t * addr) { writeSHAR(addr); }
+  inline void getMACAddress(uint8_t * addr) { readSHAR(addr); }
+
+  inline void setIPAddress(const uint8_t * addr) { writeSIPR(addr); }
+  inline void getIPAddress(uint8_t * addr) { readSIPR(addr); }
+
+  inline void setRetransmissionTime(uint16_t timeout) { writeRTR(timeout); }
+  inline void setRetransmissionCount(uint8_t retry) { writeRCR(retry); }
+
+  static void execCmdSn(SOCKET s, SockCMD _cmd);
+
+
+
+
+
+public:
+  static uint16_t write(uint16_t addr, const uint8_t *buf, uint16_t len);
+  static uint8_t write(uint16_t addr, uint8_t data) {
+    return write(addr, &data, 1);
+  }
+  static uint16_t read(uint16_t addr, uint8_t *buf, uint16_t len);
+  static uint8_t read(uint16_t addr) {
+    uint8_t data;
+    read(addr, &data, 1);
+    return data;
+  }
+# 190 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+  static W5100Linkstatus getLinkStatus();
+
+public:
+  static inline void writeMR(uint8_t _data) { write(0x0000, _data); } static inline uint8_t readMR() { return read(0x0000); };
+  static uint16_t writeGAR(const uint8_t *_buff) { return write(0x0001, _buff, 4); } static uint16_t readGAR(uint8_t *_buff) { return read(0x0001, _buff, 4); };
+  static uint16_t writeSUBR(const uint8_t *_buff) { return write(0x0005, _buff, 4); } static uint16_t readSUBR(uint8_t *_buff) { return read(0x0005, _buff, 4); };
+  static uint16_t writeSHAR(const uint8_t *_buff) { return write(0x0009, _buff, 6); } static uint16_t readSHAR(uint8_t *_buff) { return read(0x0009, _buff, 6); };
+  static uint16_t writeSIPR(const uint8_t *_buff) { return write(0x000F, _buff, 4); } static uint16_t readSIPR(uint8_t *_buff) { return read(0x000F, _buff, 4); };
+  static inline void writeIR(uint8_t _data) { write(0x0015, _data); } static inline uint8_t readIR() { return read(0x0015); };
+  static inline void writeIMR(uint8_t _data) { write(0x0016, _data); } static inline uint8_t readIMR() { return read(0x0016); };
+  static void writeRTR(uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; write(0x0017, buf, 2); } static uint16_t readRTR() { uint8_t buf[2]; read(0x0017, buf, 2); return (buf[0] << 8) | buf[1]; };
+  static inline void writeRCR(uint8_t _data) { write(0x0019, _data); } static inline uint8_t readRCR() { return read(0x0019); };
+  static inline void writeRMSR(uint8_t _data) { write(0x001A, _data); } static inline uint8_t readRMSR() { return read(0x001A); };
+  static inline void writeTMSR(uint8_t _data) { write(0x001B, _data); } static inline uint8_t readTMSR() { return read(0x001B); };
+  static inline void writePATR(uint8_t _data) { write(0x001C, _data); } static inline uint8_t readPATR() { return read(0x001C); };
+  static inline void writePTIMER(uint8_t _data) { write(0x0028, _data); } static inline uint8_t readPTIMER() { return read(0x0028); };
+  static inline void writePMAGIC(uint8_t _data) { write(0x0029, _data); } static inline uint8_t readPMAGIC() { return read(0x0029); };
+  static uint16_t writeUIPR(const uint8_t *_buff) { return write(0x002A, _buff, 4); } static uint16_t readUIPR(uint8_t *_buff) { return read(0x002A, _buff, 4); };
+  static void writeUPORT(uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; write(0x002E, buf, 2); } static uint16_t readUPORT() { uint8_t buf[2]; read(0x002E, buf, 2); return (buf[0] << 8) | buf[1]; };
+  static inline void writeVERSIONR_W5200(uint8_t _data) { write(0x001F, _data); } static inline uint8_t readVERSIONR_W5200() { return read(0x001F); };
+  static inline void writeVERSIONR_W5500(uint8_t _data) { write(0x0039, _data); } static inline uint8_t readVERSIONR_W5500() { return read(0x0039); };
+  static inline void writePSTATUS_W5200(uint8_t _data) { write(0x0035, _data); } static inline uint8_t readPSTATUS_W5200() { return read(0x0035); };
+  static inline void writePHYCFGR_W5500(uint8_t _data) { write(0x002E, _data); } static inline uint8_t readPHYCFGR_W5500() { return read(0x002E); };
+# 221 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+private:
+  static uint16_t CH_BASE(void) {
+
+
+
+    return CH_BASE_MSB << 8;
+  }
+  static uint8_t CH_BASE_MSB;
+  static const uint16_t CH_SIZE = 0x0100;
+
+  static inline uint8_t readSn(SOCKET s, uint16_t addr) {
+    return read(CH_BASE() + s * CH_SIZE + addr);
+  }
+  static inline uint8_t writeSn(SOCKET s, uint16_t addr, uint8_t data) {
+    return write(CH_BASE() + s * CH_SIZE + addr, data);
+  }
+  static inline uint16_t readSn(SOCKET s, uint16_t addr, uint8_t *buf, uint16_t len) {
+    return read(CH_BASE() + s * CH_SIZE + addr, buf, len);
+  }
+  static inline uint16_t writeSn(SOCKET s, uint16_t addr, uint8_t *buf, uint16_t len) {
+    return write(CH_BASE() + s * CH_SIZE + addr, buf, len);
+  }
+# 271 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+public:
+  static inline void writeSnMR(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0000, _data); } static inline uint8_t readSnMR(SOCKET _s) { return readSn(_s, 0x0000); }
+  static inline void writeSnCR(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0001, _data); } static inline uint8_t readSnCR(SOCKET _s) { return readSn(_s, 0x0001); }
+  static inline void writeSnIR(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0002, _data); } static inline uint8_t readSnIR(SOCKET _s) { return readSn(_s, 0x0002); }
+  static inline void writeSnSR(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0003, _data); } static inline uint8_t readSnSR(SOCKET _s) { return readSn(_s, 0x0003); }
+  static void writeSnPORT(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0004, buf, 2); } static uint16_t readSnPORT(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0004, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static uint16_t writeSnDHAR(SOCKET _s, uint8_t *_buff) { return writeSn(_s, 0x0006, _buff, 6); } static uint16_t readSnDHAR(SOCKET _s, uint8_t *_buff) { return readSn(_s, 0x0006, _buff, 6); }
+  static uint16_t writeSnDIPR(SOCKET _s, uint8_t *_buff) { return writeSn(_s, 0x000C, _buff, 4); } static uint16_t readSnDIPR(SOCKET _s, uint8_t *_buff) { return readSn(_s, 0x000C, _buff, 4); }
+  static void writeSnDPORT(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0010, buf, 2); } static uint16_t readSnDPORT(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0010, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static void writeSnMSSR(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0012, buf, 2); } static uint16_t readSnMSSR(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0012, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static inline void writeSnPROTO(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0014, _data); } static inline uint8_t readSnPROTO(SOCKET _s) { return readSn(_s, 0x0014); }
+  static inline void writeSnTOS(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0015, _data); } static inline uint8_t readSnTOS(SOCKET _s) { return readSn(_s, 0x0015); }
+  static inline void writeSnTTL(SOCKET _s, uint8_t _data) { writeSn(_s, 0x0016, _data); } static inline uint8_t readSnTTL(SOCKET _s) { return readSn(_s, 0x0016); }
+  static inline void writeSnRX_SIZE(SOCKET _s, uint8_t _data) { writeSn(_s, 0x001E, _data); } static inline uint8_t readSnRX_SIZE(SOCKET _s) { return readSn(_s, 0x001E); }
+  static inline void writeSnTX_SIZE(SOCKET _s, uint8_t _data) { writeSn(_s, 0x001F, _data); } static inline uint8_t readSnTX_SIZE(SOCKET _s) { return readSn(_s, 0x001F); }
+  static void writeSnTX_FSR(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0020, buf, 2); } static uint16_t readSnTX_FSR(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0020, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static void writeSnTX_RD(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0022, buf, 2); } static uint16_t readSnTX_RD(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0022, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static void writeSnTX_WR(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0024, buf, 2); } static uint16_t readSnTX_WR(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0024, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static void writeSnRX_RSR(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0026, buf, 2); } static uint16_t readSnRX_RSR(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0026, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static void writeSnRX_RD(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x0028, buf, 2); } static uint16_t readSnRX_RD(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x0028, buf, 2); return (buf[0] << 8) | buf[1]; }
+  static void writeSnRX_WR(SOCKET _s, uint16_t _data) { uint8_t buf[2]; buf[0] = _data >> 8; buf[1] = _data & 0xFF; writeSn(_s, 0x002A, buf, 2); } static uint16_t readSnRX_WR(SOCKET _s) { uint8_t buf[2]; readSn(_s, 0x002A, buf, 2); return (buf[0] << 8) | buf[1]; }
+
+
+
+
+
+
+private:
+  static uint8_t chip;
+  static uint8_t ss_pin;
+  static uint8_t softReset(void);
+  static uint8_t isW5100(void);
+  static uint8_t isW5200(void);
+  static uint8_t isW5500(void);
+
+public:
+  static uint8_t getChip(void) { return chip; }
+
+
+
+
+  static const uint16_t SSIZE = 2048;
+  static const uint16_t SMASK = 0x07FF;
+
+  static uint16_t SBASE(uint8_t socknum) {
+    if (chip == 51) {
+      return socknum * SSIZE + 0x4000;
+    } else {
+      return socknum * SSIZE + 0x8000;
+    }
+  }
+  static uint16_t RBASE(uint8_t socknum) {
+    if (chip == 51) {
+      return socknum * SSIZE + 0x6000;
+    } else {
+      return socknum * SSIZE + 0xC000;
+    }
+  }
+
+  static bool hasOffsetAddressMapping(void) {
+    if (chip == 55) return true;
+    return false;
+  }
+  static void setSS(uint8_t pin) { ss_pin = pin; }
+
+private:
+
+ static volatile uint8_t *ss_pin_reg;
+ static uint8_t ss_pin_mask;
+ inline static void initSS() {
+  ss_pin_reg = ( (volatile uint8_t *)( 
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 3
+              (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+              port_to_output_PGM + (( 
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 3
+              (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+              digital_pin_to_port_PGM + (ss_pin)
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 3
+              )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; })) 
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+              ))
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 3
+              )); uint16_t __result; __asm__ __volatile__ ( "lpm %A0, Z+" "\n\t" "lpm %B0, Z" "\n\t" : "=r" (__result), "=z" (__addr16) : "1" (__addr16) ); __result; }))
+# 341 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+              ) );
+  ss_pin_mask = ( 
+# 342 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 3
+               (__extension__({ uint16_t __addr16 = (uint16_t)((uint16_t)(
+# 342 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+               digital_pin_to_bit_mask_PGM + (ss_pin)
+# 342 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h" 3
+               )); uint8_t __result; __asm__ __volatile__ ( "lpm %0, Z" "\n\t" : "=r" (__result) : "z" (__addr16) ); __result; })) 
+# 342 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+               );
+  pinMode(ss_pin, 0x1);
+ }
+ inline static void setSS() {
+  *(ss_pin_reg) &= ~ss_pin_mask;
+ }
+ inline static void resetSS() {
+  *(ss_pin_reg) |= ss_pin_mask;
+ }
+# 460 "/home/whistleblower/.platformio/lib/Ethernet/src/utility/w5100.h"
+};
+
+extern W5100Class W5100;
+# 24 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Ethernet/src/Dhcp.h" 1
+# 54 "/home/whistleblower/.platformio/lib/Ethernet/src/Dhcp.h"
+enum
+{
+ padOption = 0,
+ subnetMask = 1,
+ timerOffset = 2,
+ routersOnSubnet = 3,
+
+
+ dns = 6,
+
+
+
+
+
+ hostName = 12,
+
+
+ domainName = 15,
+# 106 "/home/whistleblower/.platformio/lib/Ethernet/src/Dhcp.h"
+ dhcpRequestedIPaddr = 50,
+ dhcpIPaddrLeaseTime = 51,
+
+ dhcpMessageType = 53,
+ dhcpServerIdentifier = 54,
+ dhcpParamRequest = 55,
+
+
+ dhcpT1value = 58,
+ dhcpT2value = 59,
+
+ dhcpClientIdentifier = 61,
+ endOption = 255
+};
+
+typedef struct _RIP_MSG_FIXED
+{
+ uint8_t op;
+ uint8_t htype;
+ uint8_t hlen;
+ uint8_t hops;
+ uint32_t xid;
+ uint16_t secs;
+ uint16_t flags;
+ uint8_t ciaddr[4];
+ uint8_t yiaddr[4];
+ uint8_t siaddr[4];
+ uint8_t giaddr[4];
+ uint8_t chaddr[6];
+} RIP_MSG_FIXED;
+# 25 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp" 2
+
+IPAddress EthernetClass::_dnsServerAddress;
+DhcpClass* EthernetClass::_dhcp = 
+# 27 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp" 3 4
+                                 __null
+# 27 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp"
+                                     ;
+
+int EthernetClass::begin(uint8_t *mac, unsigned long timeout, unsigned long responseTimeout)
+{
+ static DhcpClass s_dhcp;
+ _dhcp = &s_dhcp;
+
+
+ if (W5100.init() == 0) return 0;
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.setMACAddress(mac);
+ W5100.setIPAddress(IPAddress(0,0,0,0).raw_address());
+ SPI.endTransaction();
+
+
+ int ret = _dhcp->beginWithDHCP(mac, timeout, responseTimeout);
+ if (ret == 1) {
+
+
+  SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+  W5100.setIPAddress(_dhcp->getLocalIp().raw_address());
+  W5100.setGatewayIp(_dhcp->getGatewayIp().raw_address());
+  W5100.setSubnetMask(_dhcp->getSubnetMask().raw_address());
+  SPI.endTransaction();
+  _dnsServerAddress = _dhcp->getDnsServerIp();
+  socketPortRand(micros());
+ }
+ return ret;
+}
+
+void EthernetClass::begin(uint8_t *mac, IPAddress ip)
+{
+
+
+ IPAddress dns = ip;
+ dns[3] = 1;
+ begin(mac, ip, dns);
+}
+
+void EthernetClass::begin(uint8_t *mac, IPAddress ip, IPAddress dns)
+{
+
+
+ IPAddress gateway = ip;
+ gateway[3] = 1;
+ begin(mac, ip, dns, gateway);
+}
+
+void EthernetClass::begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway)
+{
+ IPAddress subnet(255, 255, 255, 0);
+ begin(mac, ip, dns, gateway, subnet);
+}
+
+void EthernetClass::begin(uint8_t *mac, IPAddress ip, IPAddress dns, IPAddress gateway, IPAddress subnet)
+{
+ if (W5100.init() == 0) return;
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.setMACAddress(mac);
+
+ W5100.setIPAddress(ip._address.bytes);
+ W5100.setGatewayIp(gateway._address.bytes);
+ W5100.setSubnetMask(subnet._address.bytes);
+
+
+
+
+
+ SPI.endTransaction();
+ _dnsServerAddress = dns;
+}
+
+void EthernetClass::init(uint8_t sspin)
+{
+ W5100.setSS(sspin);
+}
+
+EthernetLinkStatus EthernetClass::linkStatus()
+{
+ switch (W5100.getLinkStatus()) {
+  case UNKNOWN: return Unknown;
+  case LINK_ON: return LinkON;
+  case LINK_OFF: return LinkOFF;
+  default: return Unknown;
+ }
+}
+
+EthernetHardwareStatus EthernetClass::hardwareStatus()
+{
+ switch (W5100.getChip()) {
+  case 51: return EthernetW5100;
+  case 52: return EthernetW5200;
+  case 55: return EthernetW5500;
+  default: return EthernetNoHardware;
+ }
+}
+
+int EthernetClass::maintain()
+{
+ int rc = (0);
+ if (_dhcp != 
+# 127 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp" 3 4
+             __null
+# 127 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp"
+                 ) {
+
+  rc = _dhcp->checkLease();
+  switch (rc) {
+  case (0):
+
+   break;
+  case (2):
+  case (4):
+
+   SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+   W5100.setIPAddress(_dhcp->getLocalIp().raw_address());
+   W5100.setGatewayIp(_dhcp->getGatewayIp().raw_address());
+   W5100.setSubnetMask(_dhcp->getSubnetMask().raw_address());
+   SPI.endTransaction();
+   _dnsServerAddress = _dhcp->getDnsServerIp();
+   break;
+  default:
+
+   break;
+  }
+ }
+ return rc;
+}
+
+
+void EthernetClass::MACAddress(uint8_t *mac_address)
+{
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.getMACAddress(mac_address);
+ SPI.endTransaction();
+}
+
+IPAddress EthernetClass::localIP()
+{
+ IPAddress ret;
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.getIPAddress(ret.raw_address());
+ SPI.endTransaction();
+ return ret;
+}
+
+IPAddress EthernetClass::subnetMask()
+{
+ IPAddress ret;
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.getSubnetMask(ret.raw_address());
+ SPI.endTransaction();
+ return ret;
+}
+
+IPAddress EthernetClass::gatewayIP()
+{
+ IPAddress ret;
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.getGatewayIp(ret.raw_address());
+ SPI.endTransaction();
+ return ret;
+}
+
+void EthernetClass::setMACAddress(const uint8_t *mac_address)
+{
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.setMACAddress(mac_address);
+ SPI.endTransaction();
+}
+
+void EthernetClass::setLocalIP(const IPAddress local_ip)
+{
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ IPAddress ip = local_ip;
+ W5100.setIPAddress(ip.raw_address());
+ SPI.endTransaction();
+}
+
+void EthernetClass::setSubnetMask(const IPAddress subnet)
+{
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ IPAddress ip = subnet;
+ W5100.setSubnetMask(ip.raw_address());
+ SPI.endTransaction();
+}
+
+void EthernetClass::setGatewayIP(const IPAddress gateway)
+{
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ IPAddress ip = gateway;
+ W5100.setGatewayIp(ip.raw_address());
+ SPI.endTransaction();
+}
+
+void EthernetClass::setRetransmissionTimeout(uint16_t milliseconds)
+{
+ if (milliseconds > 6553) milliseconds = 6553;
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.setRetransmissionTime(milliseconds * 10);
+ SPI.endTransaction();
+}
+
+void EthernetClass::setRetransmissionCount(uint8_t num)
+{
+ SPI.beginTransaction(SPISettings(14000000, 1, 0x00));
+ W5100.setRetransmissionCount(num);
+ SPI.endTransaction();
+}
+# 242 "/home/whistleblower/.platformio/lib/Ethernet/src/Ethernet.cpp"
+EthernetClass Ethernet;

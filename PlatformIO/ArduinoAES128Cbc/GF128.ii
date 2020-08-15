@@ -1,0 +1,624 @@
+# 1 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+# 23 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+# 1 "/home/whistleblower/.platformio/lib/Crypto/GF128.h" 1
+# 26 "/home/whistleblower/.platformio/lib/Crypto/GF128.h"
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 1 3
+# 37 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 1 3 4
+# 9 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 3 4
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 1 3 4
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef signed int int8_t __attribute__((__mode__(__QI__)));
+typedef unsigned int uint8_t __attribute__((__mode__(__QI__)));
+typedef signed int int16_t __attribute__ ((__mode__ (__HI__)));
+typedef unsigned int uint16_t __attribute__ ((__mode__ (__HI__)));
+typedef signed int int32_t __attribute__ ((__mode__ (__SI__)));
+typedef unsigned int uint32_t __attribute__ ((__mode__ (__SI__)));
+
+typedef signed int int64_t __attribute__((__mode__(__DI__)));
+typedef unsigned int uint64_t __attribute__((__mode__(__DI__)));
+# 146 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+# 163 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_least8_t;
+
+
+
+
+typedef uint8_t uint_least8_t;
+
+
+
+
+typedef int16_t int_least16_t;
+
+
+
+
+typedef uint16_t uint_least16_t;
+
+
+
+
+typedef int32_t int_least32_t;
+
+
+
+
+typedef uint32_t uint_least32_t;
+
+
+
+
+
+
+
+typedef int64_t int_least64_t;
+
+
+
+
+
+
+typedef uint64_t uint_least64_t;
+# 217 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int8_t int_fast8_t;
+
+
+
+
+typedef uint8_t uint_fast8_t;
+
+
+
+
+typedef int16_t int_fast16_t;
+
+
+
+
+typedef uint16_t uint_fast16_t;
+
+
+
+
+typedef int32_t int_fast32_t;
+
+
+
+
+typedef uint32_t uint_fast32_t;
+
+
+
+
+
+
+
+typedef int64_t int_fast64_t;
+
+
+
+
+
+
+typedef uint64_t uint_fast64_t;
+# 277 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/stdint.h" 3 4
+typedef int64_t intmax_t;
+
+
+
+
+typedef uint64_t uintmax_t;
+# 10 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stdint.h" 2 3 4
+# 38 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 2 3
+# 77 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/inttypes.h" 3
+typedef int32_t int_farptr_t;
+
+
+
+typedef uint32_t uint_farptr_t;
+# 27 "/home/whistleblower/.platformio/lib/Crypto/GF128.h" 2
+
+
+# 28 "/home/whistleblower/.platformio/lib/Crypto/GF128.h"
+class GF128
+{
+private:
+    GF128() {}
+    ~GF128() {}
+
+public:
+    static void mulInit(uint32_t H[4], const void *key);
+    static void mul(uint32_t Y[4], const uint32_t H[4]);
+    static void dbl(uint32_t V[4]);
+    static void dblEAX(uint32_t V[4]);
+    static void dblXTS(uint32_t V[4]);
+};
+# 24 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp" 2
+# 1 "/home/whistleblower/.platformio/lib/Crypto/utility/EndianUtil.h" 1
+# 25 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp" 2
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 1 3
+# 46 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+# 1 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 1 3 4
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+
+# 216 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include/stddef.h" 3 4
+typedef unsigned int size_t;
+# 47 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 2 3
+# 58 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern "C" {
+# 125 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int ffs(int __val) __attribute__((__const__));
+
+
+
+
+
+extern int ffsl(long __val) __attribute__((__const__));
+
+
+
+
+
+__extension__ extern int ffsll(long long __val) __attribute__((__const__));
+# 150 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memccpy(void *, const void *, int, size_t);
+# 162 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memchr(const void *, int, size_t) __attribute__((__pure__));
+# 180 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int memcmp(const void *, const void *, size_t) __attribute__((__pure__));
+# 191 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memcpy(void *, const void *, size_t);
+# 203 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmem(const void *, size_t, const void *, size_t) __attribute__((__pure__));
+# 213 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memmove(void *, const void *, size_t);
+# 225 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memrchr(const void *, int, size_t) __attribute__((__pure__));
+# 235 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern void *memset(void *, int, size_t);
+# 248 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcat(char *, const char *);
+# 262 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchr(const char *, int) __attribute__((__pure__));
+# 274 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strchrnul(const char *, int) __attribute__((__pure__));
+# 287 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcmp(const char *, const char *) __attribute__((__pure__));
+# 305 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcpy(char *, const char *);
+# 320 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strcasecmp(const char *, const char *) __attribute__((__pure__));
+# 333 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strcasestr(const char *, const char *) __attribute__((__pure__));
+# 344 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strcspn(const char *__s, const char *__reject) __attribute__((__pure__));
+# 364 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strdup(const char *s1);
+# 377 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcat(char *, const char *, size_t);
+# 388 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlcpy(char *, const char *, size_t);
+# 399 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strlen(const char *) __attribute__((__pure__));
+# 411 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strlwr(char *);
+# 422 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncat(char *, const char *, size_t);
+# 434 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 449 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strncpy(char *, const char *, size_t);
+# 464 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern int strncasecmp(const char *, const char *, size_t) __attribute__((__pure__));
+# 478 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strnlen(const char *, size_t) __attribute__((__pure__));
+# 491 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strpbrk(const char *__s, const char *__accept) __attribute__((__pure__));
+# 505 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrchr(const char *, int) __attribute__((__pure__));
+# 515 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strrev(char *);
+# 533 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strsep(char **, const char *);
+# 544 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern size_t strspn(const char *__s, const char *__accept) __attribute__((__pure__));
+# 557 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strstr(const char *, const char *) __attribute__((__pure__));
+# 576 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok(char *, const char *);
+# 593 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strtok_r(char *, const char *, char **);
+# 606 "/home/whistleblower/.platformio/packages/toolchain-atmelavr/avr/include/string.h" 3
+extern char *strupr(char *);
+
+
+
+extern int strcoll(const char *s1, const char *s2);
+extern char *strerror(int errnum);
+extern size_t strxfrm(char *dest, const char *src, size_t n);
+
+
+
+}
+# 26 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp" 2
+# 58 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+
+# 58 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+void GF128::mulInit(uint32_t H[4], const void *key)
+{
+
+
+
+    memcpy(H, key, 16);
+# 74 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+}
+# 90 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+void GF128::mul(uint32_t Y[4], const uint32_t H[4])
+{
+
+    uint32_t Z[4] = {0, 0, 0, 0};
+    uint32_t V0 = H[0];
+    uint32_t V1 = H[1];
+    uint32_t V2 = H[2];
+    uint32_t V3 = H[3];
+
+
+
+
+    for (uint8_t posn = 0; posn < 16; ++posn) {
+        uint8_t value = ((const uint8_t *)Y)[posn];
+        for (uint8_t bit = 0; bit < 8; ++bit) {
+            __asm__ __volatile__ (
+
+                "ldd r24,%8\n"
+                "lsl r24\n"
+                "std %8,r24\n"
+                "mov __tmp_reg__,__zero_reg__\n"
+                "sbc __tmp_reg__,__zero_reg__\n"
+
+
+                "mov r24,%D0\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%D4\n"
+                "eor r25,r24\n"
+                "std %D4,r25\n"
+                "mov r24,%C0\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%C4\n"
+                "eor r25,r24\n"
+                "std %C4,r25\n"
+                "mov r24,%B0\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%B4\n"
+                "eor r25,r24\n"
+                "std %B4,r25\n"
+                "mov r24,%A0\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%A4\n"
+                "eor r25,r24\n"
+                "std %A4,r25\n"
+                "mov r24,%D1\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%D5\n"
+                "eor r25,r24\n"
+                "std %D5,r25\n"
+                "mov r24,%C1\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%C5\n"
+                "eor r25,r24\n"
+                "std %C5,r25\n"
+                "mov r24,%B1\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%B5\n"
+                "eor r25,r24\n"
+                "std %B5,r25\n"
+                "mov r24,%A1\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%A5\n"
+                "eor r25,r24\n"
+                "std %A5,r25\n"
+                "mov r24,%D2\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%D6\n"
+                "eor r25,r24\n"
+                "std %D6,r25\n"
+                "mov r24,%C2\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%C6\n"
+                "eor r25,r24\n"
+                "std %C6,r25\n"
+                "mov r24,%B2\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%B6\n"
+                "eor r25,r24\n"
+                "std %B6,r25\n"
+                "mov r24,%A2\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%A6\n"
+                "eor r25,r24\n"
+                "std %A6,r25\n"
+                "mov r24,%D3\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%D7\n"
+                "eor r25,r24\n"
+                "std %D7,r25\n"
+                "mov r24,%C3\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%C7\n"
+                "eor r25,r24\n"
+                "std %C7,r25\n"
+                "mov r24,%B3\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%B7\n"
+                "eor r25,r24\n"
+                "std %B7,r25\n"
+                "mov r24,%A3\n"
+                "and r24,__tmp_reg__\n"
+                "ldd r25,%A7\n"
+                "eor r25,r24\n"
+                "std %A7,r25\n"
+
+
+                "lsr %A0\n"
+                "ror %B0\n"
+                "ror %C0\n"
+                "ror %D0\n"
+                "ror %A1\n"
+                "ror %B1\n"
+                "ror %C1\n"
+                "ror %D1\n"
+                "ror %A2\n"
+                "ror %B2\n"
+                "ror %C2\n"
+                "ror %D2\n"
+                "ror %A3\n"
+                "ror %B3\n"
+                "ror %C3\n"
+                "ror %D3\n"
+                "mov r24,__zero_reg__\n"
+                "sbc r24,__zero_reg__\n"
+                "andi r24,0xE1\n"
+                "eor %A0,r24\n"
+                : "+r"(V0), "+r"(V1), "+r"(V2), "+r"(V3)
+                : "Q"(Z[0]), "Q"(Z[1]), "Q"(Z[2]), "Q"(Z[3]), "Q"(value)
+                : "r24", "r25"
+            );
+        }
+    }
+
+
+    __asm__ __volatile__ (
+        "ldd __tmp_reg__,%A0\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%B0\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%C0\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%D0\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%A1\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%B1\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%C1\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%D1\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%A2\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%B2\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%C2\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%D2\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%A3\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%B3\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%C3\n"
+        "st X+,__tmp_reg__\n"
+        "ldd __tmp_reg__,%D3\n"
+        "st X,__tmp_reg__\n"
+        : : "Q"(Z[0]), "Q"(Z[1]), "Q"(Z[2]), "Q"(Z[3]), "x"(Y)
+    );
+# 299 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+}
+# 314 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+void GF128::dbl(uint32_t V[4])
+{
+
+    __asm__ __volatile__ (
+        "ld r16,Z\n"
+        "ldd r17,Z+1\n"
+        "ldd r18,Z+2\n"
+        "ldd r19,Z+3\n"
+        "lsr r16\n"
+        "ror r17\n"
+        "ror r18\n"
+        "ror r19\n"
+        "std Z+1,r17\n"
+        "std Z+2,r18\n"
+        "std Z+3,r19\n"
+        "ldd r17,Z+4\n"
+        "ldd r18,Z+5\n"
+        "ldd r19,Z+6\n"
+        "ldd r20,Z+7\n"
+        "ror r17\n"
+        "ror r18\n"
+        "ror r19\n"
+        "ror r20\n"
+        "std Z+4,r17\n"
+        "std Z+5,r18\n"
+        "std Z+6,r19\n"
+        "std Z+7,r20\n"
+        "ldd r17,Z+8\n"
+        "ldd r18,Z+9\n"
+        "ldd r19,Z+10\n"
+        "ldd r20,Z+11\n"
+        "ror r17\n"
+        "ror r18\n"
+        "ror r19\n"
+        "ror r20\n"
+        "std Z+8,r17\n"
+        "std Z+9,r18\n"
+        "std Z+10,r19\n"
+        "std Z+11,r20\n"
+        "ldd r17,Z+12\n"
+        "ldd r18,Z+13\n"
+        "ldd r19,Z+14\n"
+        "ldd r20,Z+15\n"
+        "ror r17\n"
+        "ror r18\n"
+        "ror r19\n"
+        "ror r20\n"
+        "std Z+12,r17\n"
+        "std Z+13,r18\n"
+        "std Z+14,r19\n"
+        "std Z+15,r20\n"
+        "mov r17,__zero_reg__\n"
+        "sbc r17,__zero_reg__\n"
+        "andi r17,0xE1\n"
+        "eor r16,r17\n"
+        "st Z,r16\n"
+        : : "z"(V)
+        : "r16", "r17", "r18", "r19", "r20"
+    );
+# 388 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+}
+# 406 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+void GF128::dblEAX(uint32_t V[4])
+{
+
+    __asm__ __volatile__ (
+        "ldd r16,Z+15\n"
+        "ldd r17,Z+14\n"
+        "ldd r18,Z+13\n"
+        "ldd r19,Z+12\n"
+        "lsl r16\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "std Z+14,r17\n"
+        "std Z+13,r18\n"
+        "std Z+12,r19\n"
+        "ldd r17,Z+11\n"
+        "ldd r18,Z+10\n"
+        "ldd r19,Z+9\n"
+        "ldd r20,Z+8\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "rol r20\n"
+        "std Z+11,r17\n"
+        "std Z+10,r18\n"
+        "std Z+9,r19\n"
+        "std Z+8,r20\n"
+        "ldd r17,Z+7\n"
+        "ldd r18,Z+6\n"
+        "ldd r19,Z+5\n"
+        "ldd r20,Z+4\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "rol r20\n"
+        "std Z+7,r17\n"
+        "std Z+6,r18\n"
+        "std Z+5,r19\n"
+        "std Z+4,r20\n"
+        "ldd r17,Z+3\n"
+        "ldd r18,Z+2\n"
+        "ldd r19,Z+1\n"
+        "ld r20,Z\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "rol r20\n"
+        "std Z+3,r17\n"
+        "std Z+2,r18\n"
+        "std Z+1,r19\n"
+        "st Z,r20\n"
+        "mov r17,__zero_reg__\n"
+        "sbc r17,__zero_reg__\n"
+        "andi r17,0x87\n"
+        "eor r16,r17\n"
+        "std Z+15,r16\n"
+        : : "z"(V)
+        : "r16", "r17", "r18", "r19", "r20"
+    );
+# 480 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+}
+# 497 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+void GF128::dblXTS(uint32_t V[4])
+{
+
+    __asm__ __volatile__ (
+        "ld r16,Z\n"
+        "ldd r17,Z+1\n"
+        "ldd r18,Z+2\n"
+        "ldd r19,Z+3\n"
+        "lsl r16\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "std Z+1,r17\n"
+        "std Z+2,r18\n"
+        "std Z+3,r19\n"
+        "ldd r17,Z+4\n"
+        "ldd r18,Z+5\n"
+        "ldd r19,Z+6\n"
+        "ldd r20,Z+7\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "rol r20\n"
+        "std Z+4,r17\n"
+        "std Z+5,r18\n"
+        "std Z+6,r19\n"
+        "std Z+7,r20\n"
+        "ldd r17,Z+8\n"
+        "ldd r18,Z+9\n"
+        "ldd r19,Z+10\n"
+        "ldd r20,Z+11\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "rol r20\n"
+        "std Z+8,r17\n"
+        "std Z+9,r18\n"
+        "std Z+10,r19\n"
+        "std Z+11,r20\n"
+        "ldd r17,Z+12\n"
+        "ldd r18,Z+13\n"
+        "ldd r19,Z+14\n"
+        "ldd r20,Z+15\n"
+        "rol r17\n"
+        "rol r18\n"
+        "rol r19\n"
+        "rol r20\n"
+        "std Z+12,r17\n"
+        "std Z+13,r18\n"
+        "std Z+14,r19\n"
+        "std Z+15,r20\n"
+        "mov r17,__zero_reg__\n"
+        "sbc r17,__zero_reg__\n"
+        "andi r17,0x87\n"
+        "eor r16,r17\n"
+        "st Z,r16\n"
+        : : "z"(V)
+        : "r16", "r17", "r18", "r19", "r20"
+    );
+# 571 "/home/whistleblower/.platformio/lib/Crypto/GF128.cpp"
+}

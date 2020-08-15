@@ -66,7 +66,7 @@ def performanceEncrypt(name: str, payload: bytearray, cipher: AES, run: int):
     # p.stop()
     # p.save('profile_encrypt_' + name)
 
-    data["Crypt"].append("{:.10f}".format(elapsed / (5000.0 * 16.0)))
+    data["Crypt"].append("{:.10f}".format(elapsed / 5000.0))
 
     # out += "{:.10f}".format(elapsed / (5000.0 * 16.0))
     # out += "us per byte, "
@@ -82,7 +82,7 @@ def performanceDecrypt(name: str, encrypted: bytearray, cipher: AES, run: int):
         cipher.decrypt(encrypted)
     elapsed = time.time() - start
 
-    data["Decrypt"].append("{:.10f}".format(elapsed / (5000.0 * 16.0)))
+    data["Decrypt"].append("{:.10f}".format(elapsed / 5000.0))
     # out += "{:.10f}".format(elapsed / (5000.0 * 16.0))
     # out += "us per byte, "
     # out += "{:.10f}".format((16.0 * 5000.0 * 1000000.0) / elapsed)

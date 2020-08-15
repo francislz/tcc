@@ -1,14 +1,20 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include <WiFiUdp.h>
+#include <NTPClient.h>
 
 // Update these with values suitable for your network.
 
-const char* ssid = "Franciscone";
-const char* password = "franciscone2020";
-const char* mqtt_server = "mqtt.eclipse.org";
+const char* ssid = "TeleonCBA1";
+const char* password = "22681333";
+const char* mqtt_server = "10.10.11.10";
 
 WiFiClient espClient;
+WiFiUDP ntpUDP;
+
 PubSubClient client(espClient);
+NTPClient timeClient(ntpUDP, "br.pool.ntp.org", 3600, 60000);
+
 unsigned long lastMsg = 0;
 #define MSG_BUFFER_SIZE	(50)
 char msg[MSG_BUFFER_SIZE];
@@ -39,9 +45,12 @@ void setup_wifi() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("] ");
+  String time;
+  timeClient.update();
+  time = timeClient.getEpochTime();
+  Serial.println("Enviado em: " + time);
+
+  Serial.print("Recebido em: ");
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
@@ -56,12 +65,12 @@ void reconnect() {
     String clientId = "ESP8266Client-";
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
-    if (client.connect(clientId.c_str(), "kali_broker", "CompuT3RSc1enc3")) {
+    if (client.connect(clientId.c_str(), "test_user", "test_password")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
       client.publish("/franciscone/tcc/rasp", "Oi do ESP8266");
       // ... and resubscribe
-      client.subscribe("inTopic");
+      client.subscribe("/franciscone/tcc/esp");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -77,6 +86,10 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+  //NTP CONFIG
+  timeClient.begin();
+  //Set para o horario padrao de brasilia GTM -3
+  timeClient.setTimeOffset(-10800);
 }
 
 void loop() {
@@ -85,14 +98,4 @@ void loop() {
     reconnect();
   }
   client.loop();
-
-  unsigned long now = millis();
-  if (now - lastMsg > 2000) {
-    lastMsg = now;
-    ++value;
-    snprintf (msg, MSG_BUFFER_SIZE, "hello world #%ld", value);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("outTopic", msg);
-  }
 }
